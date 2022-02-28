@@ -1,0 +1,6 @@
+authlib
+requests
+flask-login
+flask
+python
+openweathermap
