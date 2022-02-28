@@ -38,8 +38,7 @@ login_manager.needs_refresh_message_category = "info"
 Read credentials from the configuration file
 '''
 app.config['SECRET_KEY'] = "THIS SHOULD BE SECRET"
-app.config['GOOGLE_CLIENT_ID'] = '379885467838-naaq0jp4o01f5ngrm27h1v3j4f2acndk.apps.googleusercontent.com'
-app.config['GOOGLE_CLIENT_SECRET'] = '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'
+
 
 
 '''
