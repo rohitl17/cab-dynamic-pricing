@@ -21,7 +21,7 @@ class SurgePriceClassifer:
         ''''''
         
         ''''''
-        filename = "./surge_classification_rf_model.sav"
+        filename = "../model_weights/surge_classification_rf_model.sav"
         loaded_model = pickle.load(open(filename, 'rb'))
         result = loaded_model.predict(self.data_frame)
         return self.predictive_surge_mapping[int(result)]
