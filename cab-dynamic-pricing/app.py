@@ -102,33 +102,7 @@ def index():
         )
     else:
         return '<a class="button" href="/login">Google Login</a>'
-    
-###Get parameters and make things work
-@app.route("/get_cab_price")
-def run_main():
-    source = request.args.get('source')
-    destination = request.args.get('destination')
-    type_of_car = request.args.get('cab_type')
-    
-    # Call google maps API - Get code from Shubha
-    
-    source_latitude='10.25'
-    source_longitude='100.25'
-    destination_latitude='12.5'
-    destination_longitude='1000'
-    distance='0.2'
-    ETA=15
-    
-    # Call uber and lyft API
-     uber_original_surge='1.5'
-     
-    
-    # Lyft not available
-    lyft_original_surge = '1.0'
-    
-    # Call weather API
-    weather_dictionary=weather_information(latitude, longitude)
-    
+
     
 @app.route('/login')
 def googleLogin():
@@ -180,7 +154,47 @@ def googleAuthorize():
     return redirect(url_for("index"))
 
 
-
+###Get parameters and make things work
+@app.route("/get_cab_price")
+def run_main():
+    source = request.args.get('source')
+    destination = request.args.get('destination')
+    type_of_car = request.args.get('cab_type')
+    
+    # Call google maps API - Get code from Shubha
+    
+    source_latitude='10.25'
+    source_longitude='100.25'
+    destination_latitude='12.5'
+    destination_longitude='1000'
+    distance='0.2'
+    ETA=15
+    
+    cab_rides_original_df=pd.read_csv('cab_rides.csv')
+    cab_rides_current_df=all_the_above_parameters
+    
+    #preprocess cab_rides_csv, save and run the code
+    cab_rides_original_df.append(cab_rides_current_df, ignore_index=True)
+    cab_rides_original_df.to_csv('cab_rides.csv')
+    
+    # Call uber and lyft API
+    uber_original_surge='1.5'
+     
+    
+    # Lyft not available
+    lyft_original_surge = '1.0'
+    
+    # Call weather API
+    weather_current_df=weather_information(latitude, longitude)
+    
+    weather_original_df=pd.read_csv('weather.csv')
+    
+    #preprocess(weather_current_df), save and run the code
+    weather_current_df['surge_price']=[uber_original_surge]
+    weather_original_df.append(weather_current_df, ignore_index=True)
+    weather_original_df.to_csv('weather.csv')
+    
+    return json_object
 
 
 

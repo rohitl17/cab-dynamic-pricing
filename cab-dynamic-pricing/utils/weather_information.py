@@ -17,4 +17,6 @@ def weather_information(latitude, longitude):
     weather_model_parameters_dict['humidity']=response_data['current']['humidity']
     weather_model_parameters_dict['wind']=response_data['current']['wind_speed']
     
-    return weather_model_parameters_dict
+    current_weather_df=pd.DataFrame.from_dict(weather_model_parameters_dict)
+    
+    return current_weather_df
