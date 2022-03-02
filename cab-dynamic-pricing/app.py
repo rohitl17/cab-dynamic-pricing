@@ -18,7 +18,7 @@ from flask_login import (
 )
 
 '''
-Required App, Oauth, Session Management Initializations
+Required Flask application, Oauth, Session Management Initializations
 '''
 
 app = Flask(__name__, static_url_path='',
@@ -42,7 +42,7 @@ app.config['SECRET_KEY'] = "THIS SHOULD BE SECRET"
 
 
 '''
-Initialize google oauth registration details
+Initialize Google oauth registration details, common for all the oauth configurations
 '''
 google = oauth.register(
     name = 'google',
@@ -58,20 +58,22 @@ google = oauth.register(
 )
 
 
+'''
+Load user using the unique ID given by Google Oauth
+'''
 @login_manager.user_loader
 def loadUser(user_id):
     
-    #Load current user on the basis of the Unique ID
     return User('116296017614486242589', 'Rohit Lokwani', 'rlokwani@uw.edu')
 #     return User.get(user_id)
 
 
+'''
+Logout from the application, called when the user clicks the hyperlink for the
+'''
 @app.route("/logout")
 @login_required
-def logout():
-    
-    #If the user clicks on the logout link
-    
+def logout():    
     logout_user()
     return redirect(url_for("index"))
 
