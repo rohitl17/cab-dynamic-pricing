@@ -2,7 +2,7 @@ from flask import Flask
 import pymongo, json
 from bson import ObjectId
 from bson import json_util
-import software_configuration as cfg
+import software_configuration as config
 from user import User
 from utils.weather_information import weather_information
 
@@ -15,46 +15,6 @@ from flask_login import (
     login_required,
     login_user,
     logout_user,
-)
-
-'''
-Required Flask application, Oauth, Session Management Initializations
-'''
-
-app = Flask(__name__, static_url_path='',
-                  static_folder='build',
-                  template_folder='templates')
-
-
-oauth = OAuth(app)
-
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.needs_refresh_message = (u"Session timedout, please re-login")
-login_manager.needs_refresh_message_category = "info"
-
-
-'''
-Read credentials from the configuration file
-'''
-app.config['SECRET_KEY'] = "THIS SHOULD BE SECRET"
-
-
-
-'''
-Initialize Google oauth registration details, common for all the oauth configurations
-'''
-google = oauth.register(
-    name = 'google',
-    client_id = app.config["GOOGLE_CLIENT_ID"],
-    client_secret = app.config["GOOGLE_CLIENT_SECRET"],
-    access_token_url = 'https://accounts.google.com/o/oauth2/token',
-    access_token_params = None,
-    authorize_url = 'https://accounts.google.com/o/oauth2/auth',
-    authorize_params = None,
-    api_base_url = 'https://www.googleapis.com/oauth2/v1/',
-    userinfo_endpoint = 'https://openidconnect.googleapis.com/v1/userinfo',  # This is only needed if using openId to fetch user info
-    client_kwargs = {'scope': 'openid email profile'},
 )
 
 
@@ -200,6 +160,46 @@ def run_main():
 
 
 
+'''
+Required Flask application, Oauth, Session Management Initializations
+'''
+
+app = Flask(__name__, static_url_path='',
+                  static_folder='build',
+                  template_folder='templates')
+
+
+oauth = OAuth(app)
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.needs_refresh_message = (u"Session timedout, please re-login")
+login_manager.needs_refresh_message_category = "info"
+
+
+'''
+Read credentials from the configuration file
+'''
+app.config['SECRET_KEY'] = config.google_oauth_credentials['secret_key']
+app.config['GOOGLE_CLIENT_ID'] = config.google_oauth_credentials['google_client_id']
+app.config['GOOGLE_CLIENT_SECRET'] = config.google_oauth_credentials['google_client_secret']
+
+
+'''
+Initialize Google oauth registration details, common for all the oauth configurations
+'''
+google = oauth.register(
+    name = 'google',
+    client_id = app.config["GOOGLE_CLIENT_ID"],
+    client_secret = app.config["GOOGLE_CLIENT_SECRET"],
+    access_token_url = 'https://accounts.google.com/o/oauth2/token',
+    access_token_params = None,
+    authorize_url = 'https://accounts.google.com/o/oauth2/auth',
+    authorize_params = None,
+    api_base_url = 'https://www.googleapis.com/oauth2/v1/',
+    userinfo_endpoint = 'https://openidconnect.googleapis.com/v1/userinfo',  # This is only needed if using openId to fetch user info
+    client_kwargs = {'scope': 'openid email profile'},
+)
 
 if __name__ == '__main__':
     app.run()

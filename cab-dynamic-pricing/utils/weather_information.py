@@ -1,7 +1,8 @@
 import requests, json
+import software_configuration as config
 
 def weather_information(latitude, longitude):
-    api_key = ""
+    api_key = config.weather_api['api_key']
     latitude = "48.208176"
     longitude = "16.373819"
     url = "https://api.openweathermap.org/data/2.5/onecall?lat=%s&lon=%s&appid=%s&units=metric" % (latitude, longitude, api_key)
