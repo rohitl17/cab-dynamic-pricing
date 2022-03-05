@@ -163,9 +163,12 @@ def run_main():
     lyft_original_surge = '1.0'
     
     
-    # Call weather API
-    weather_current_df=weather_information(source_latitude, source_longitude)
-        
+    '''
+    Surge price classification model Inference
+    '''
+    surge_inference_df=weather_information(source_latitude, source_longitude)
+    surge_inference_df['surge_mult']=[(uber_original_surge+lyft_original_surge)/2]
+    
     
     '''
     Cab Price Model inference

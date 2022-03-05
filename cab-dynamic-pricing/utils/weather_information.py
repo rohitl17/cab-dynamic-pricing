@@ -15,7 +15,7 @@ def weather_information(latitude, longitude):
     response = requests.get(url)
     response_data = json.loads(response.text)
     
-    weather_model_parameters_dict={}
+    weather_model_parameters_dict={'location_latitude': latitude,'location_longitude': longitude}
     
     weather_model_parameters_dict['temp']=response_data['current']['temp']
     weather_model_parameters_dict['Clouds']=response_data['current']['clouds']
