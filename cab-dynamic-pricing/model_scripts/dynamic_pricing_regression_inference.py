@@ -9,7 +9,7 @@ class CabPricePredictor:
         ''''''
         
         ''''''
-        filename = "../model_weights/uber_mlr_model"
+        filename = "../model_weights/uber_mlr_model.sav"
         uber_mlr_model = pickle.load(open(filename, 'rb'))
         uber_price = loaded_model.predict(self.data_frame)
         return uber_price
@@ -18,7 +18,7 @@ class CabPricePredictor:
         ''''''
         
         ''''''
-        filename = "../model_weights/lyft_mlr_model"
+        filename = "../model_weights/lyft_mlr_model.sav"
         lyft_mlr_model = pickle.load(open(filename, 'rb'))
         lyft_price = loaded_model.predict(self.data_frame)
         return lyft_price
