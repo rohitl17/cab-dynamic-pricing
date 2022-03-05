@@ -3,9 +3,8 @@ Script that handles the main functionality of the whole project. All the API cal
 '''
 
 from flask import Flask
-import pymongo, json
-from bson import ObjectId
-from bson import json_util
+import json
+
 import software_configuration as config
 from user import User
 from utils.weather_information import weather_information
@@ -121,7 +120,6 @@ def googleAuthorize():
     if user is not None:
         login_user(user)
     else:
-        print ("Ignore")
         user=User(unique_id, user_name, user_email)
         user_created = user.create(unique_id, user_name, user_email)
         if user_created == False:
@@ -142,12 +140,14 @@ def run_main():
     return: json object for result
     '''
     
-    
     source = request.args.get('source')
     destination = request.args.get('destination')
-    type_of_car = request.args.get('cab_type')
+    uber_cab_type = request.args.get('uber_cab_type')
+    lyft_cab_type = request.args.get('lyft_cab_type')
     
-    # Call google maps API - Get code from Shubha
+    source_latitude, source_longitude=google_maps(source)
+    destination_latitude, destination_longitude=google_maps(destination)
+    distance, ETA = google_maps_distance_matrix(source, destination)
     
     source_latitude='10.25'
     source_longitude='100.25'
@@ -156,29 +156,27 @@ def run_main():
     distance='0.2'
     ETA=15
     
-    cab_rides_original_df=pd.read_csv('cab_rides.csv')
-    cab_rides_current_df=all_the_above_parameters
-    
-    #preprocess cab_rides_csv, save and run the code
-    cab_rides_original_df.append(cab_rides_current_df, ignore_index=True)
-    cab_rides_original_df.to_csv('cab_rides.csv')
-    
     # Call uber and lyft API
     uber_original_surge='1.5'
      
-    
     # Lyft not available
     lyft_original_surge = '1.0'
     
+    
     # Call weather API
-    weather_current_df=weather_information(latitude, longitude)
+    weather_current_df=weather_information(source_latitude, source_longitude)
+        
     
-    weather_original_df=pd.read_csv('weather.csv')
+    '''
+    Cab Price Model inference
+    '''
+    cab_price_inference_df = pd.DataFrame([source_latitude, source_longitude, destination_latitude, destination_longitude, distance, surge_multiplier, uber_cab_type, lyft_cab_type, uber_price, lyft_price], columns=['source_lat','source_long', 'dest_lat', 'dest_long','distance','surge_multiplier','uber_cab_type', 'lyft_cab_type', 'uber_price', 'lyft_price'])
+
     
-    #preprocess(weather_current_df), save and run the code
-    weather_current_df['surge_price']=[uber_original_surge]
-    weather_original_df.append(weather_current_df, ignore_index=True)
-    weather_original_df.to_csv('weather.csv')
+    cab_price_object=CabPricePredictor(cab_price_inference_df)
+    uber_price, lyft_price = cab_price_object.get_price()
+    
+    
     
     return json_object
 

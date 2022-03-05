@@ -2,6 +2,12 @@ import requests, json
 import software_configuration as config
 
 def weather_information(latitude, longitude):
+    '''
+    Get weather information of the location
+    param: latitude, longitude of a location
+    return: weather object with all the required parameters
+    '''
+    
     api_key = config.weather_api['api_key']
     latitude = "48.208176"
     longitude = "16.373819"
