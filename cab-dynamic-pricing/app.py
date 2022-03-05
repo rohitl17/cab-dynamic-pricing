@@ -1,3 +1,7 @@
+'''
+Script that handles the main functionality of the whole project. All the API calls including Oauth authentication, google maps, uber, lyft and weather APIs are done from here. This script acts as an interface between the UI, the API calls and the machine learning models
+'''
+
 from flask import Flask
 import pymongo, json
 from bson import ObjectId
@@ -18,39 +22,50 @@ from flask_login import (
 )
 
 
-'''
-Load user using the unique ID given by Google Oauth
-'''
+
 @login_manager.user_loader
 def loadUser(user_id):
+    '''
+    This is a functionality of the login_manager from flask_login. The goal is return the loaded user in the current context
+    
+    param: user_id: Unique ID string returned by the Google Oauth
+    return: user: Object of user class, if user is old one, else returns None
+    '''
     
     return User('116296017614486242589', 'Rohit Lokwani', 'rlokwani@uw.edu')
 #     return User.get(user_id)
 
 
-'''
-Logout from the application, called when the user clicks the hyperlink for the
-'''
+
 @app.route("/logout")
 @login_required
 def logout():    
+    '''
+    This is a functionality of the login_manager from flask_login. Log the user out from the application once the logout button is pressed or the seesion is timed out
+    
+    param: none
+    return: none (Redirects to the home page)
+    '''
+    
     logout_user()
     return redirect(url_for("index"))
 
 
 @app.before_request
 def beforeRequest():
-    
-    #Setting logout time
+    '''
+    Setting logout time in case of inactivity
+    param, return : None
+    '''
     
     session.permanent = True
-    app.permanent_session_lifetime = timedelta(minutes=5)
+    app.permanent_session_lifetime = timedelta(minutes=config.user['session_timeout'])
 
     
 @app.route("/")
 def index():
     '''
-    Link to the homepage. This is what the UI will be calling.
+    Homepage for the end user, which shows the google login button
     '''
     
     print (current_user.is_authenticated)
@@ -69,7 +84,10 @@ def index():
 @app.route('/login')
 def googleLogin():
     '''
-    Google login route
+    Google login route for authorizing using Oauth
+    
+    param: none
+    return: none (Redirect the context to the redirect URL in the Oauth configuration on Google console)
     '''
     
     google = oauth.create_client('google')
@@ -80,7 +98,10 @@ def googleLogin():
 @app.route('/login/google/authorize')
 def googleAuthorize():
     '''
-    Google authorization route
+    Google authorization route. Gets the user information from Google once the user is authorized. If the user already exists in the database the user information is loaded in context, else new entry is created for the user in the database. If the authentication fails, the user is directed back to the login page.
+    
+    param: none
+    return: none (Redirect to the home page where the user enters the information and gets cab price
     '''
     
     google = oauth.create_client('google')
@@ -94,11 +115,7 @@ def googleAuthorize():
         user_name = user_info["name"]
     else:
         return "User email not available or not verified by Google.", 400
-    
-    
-    
-    #Check for user's existence in the database, insert one if not already in the database
-    
+        
     user = User.get(unique_id)
     
     if user is not None:
@@ -112,13 +129,20 @@ def googleAuthorize():
     
     login_user(user)
     print ("Google Login Successful")
-    # Send user to the required page
+
     return redirect(url_for("index"))
 
 
-###Get parameters and make things work
 @app.route("/get_cab_price")
 def run_main():
+    '''
+    This API handles the main business logic of the whole application. Calls the Google Maps API to get the latitude and longitude for source and destination. Calls the openweathermap API to get the weather details. Calls the model inference APIs for surge price classification and linear regression for calculating the dynamic price for uber and lyft APIs.
+     
+    param: source, destination, cab_price
+    return: json object for result
+    '''
+    
+    
     source = request.args.get('source')
     destination = request.args.get('destination')
     type_of_car = request.args.get('cab_type')
@@ -178,7 +202,7 @@ login_manager.needs_refresh_message_category = "info"
 
 
 '''
-Read credentials from the configuration file
+Read credentials from the configuration file and add it to the app configuration
 '''
 app.config['SECRET_KEY'] = config.google_oauth_credentials['secret_key']
 app.config['GOOGLE_CLIENT_ID'] = config.google_oauth_credentials['google_client_id']
@@ -200,6 +224,7 @@ google = oauth.register(
     userinfo_endpoint = 'https://openidconnect.googleapis.com/v1/userinfo',  # This is only needed if using openId to fetch user info
     client_kwargs = {'scope': 'openid email profile'},
 )
+
 
 if __name__ == '__main__':
     app.run()
