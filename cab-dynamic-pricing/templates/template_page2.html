@@ -49,13 +49,39 @@ input[type=submit]:hover {
     <label for="destination">Destination</label>
     <input type="text" id="destination" name="Destination" placeholder="Where to..">
 
-    <label for="cab">Cab</label>
-    <select id="cab" name="cab">
-      <option value="Uber">Uber</option>
+    <label for="cab-type">Uber Cab Type</label>
+    <select id="cab-type" name="cab-type">
+      <option value="Black">Black</option>
+      <option value="Black-SUV">Black SUV</option>
+      <option value="UberPool">Uber Pool</option>
+      <option value="UberX">Uber X</option>
+      <option value="UberXL">Uber XL</option>
+      <option value="WAV">WAV</option>
+    </select> 
+
+    <label for="cab-type">Lyft Cab Type</label>
+    <select id="cab-type" name="cab-type">
+      <option value="Lux">Lux</option>
+      <option value="Lux-Black">Lux Black</option>
+      <option value="Lux-Black-XL">Lux Black XL</option>
       <option value="Lyft">Lyft</option>
-    </select>
+      <option value="Lyft-XL">Lyft XL</option>
+      <option value="Shared">Shared</option>
+    </select> 
 
     <input type="submit" value="Calculate Price">
+
+    <br>
+    <br>
+    <br>
+    
+    <label for="uber-price-op">Uber Price</label>
+    <output name="Uber Price"></output>
+    <br>
+    <br>
+    <label for="lyft-price-op">Lyft Price</label>
+    <output name="Lyft Price"></output>
+
   </form>
 </div>
 
