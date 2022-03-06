@@ -1,11 +1,10 @@
 '''
 Script that handles the main functionality of the whole project. All the API calls including Oauth authentication, google maps, uber, lyft and weather APIs are done from here. This script acts as an interface between the UI, the API calls and the machine learning models
 '''
-
 from flask import Flask
 import json
 
-import software_configuration as config
+import configuration_files.software_configuration as config
 from user import User
 from utils.weather_information import weather_information
 
