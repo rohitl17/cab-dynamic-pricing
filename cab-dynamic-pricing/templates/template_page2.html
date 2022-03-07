@@ -58,15 +58,15 @@ form .btn {
 <h3>Hi {{data.name}}, Welcome to EasyCabs!</h3>
 
 <div class="container">
-  <form action='getCabPrice' method="POST">
+  <form action="{{ url_for("getCabPrice")}}" method="post">
     <label for="source">Source</label>
-    <input type="text" id="source" name="Source" value="{{ request.form['source'] }}" placeholder="From where..">
+    <input type="text" id="source" name="Source" placeholder="From where..">
 
     <label for="destination">Destination</label>
     <input type="text" id="destination" name="Destination" placeholder="Where to..">
 
     <label for="cab-type">Uber Cab Type</label>
-    <select id="cab-type" name="cab-type">
+    <select id="cab-type" name="uber-cab-type">
       <option value="Black">Black</option>
       <option value="Black-SUV">Black SUV</option>
       <option value="UberPool">Uber Pool</option>
@@ -76,7 +76,7 @@ form .btn {
     </select>
 
     <label for="cab-type">Lyft Cab Type</label>
-    <select id="cab-type" name="cab-type">
+    <select id="cab-type" name="lyft-cab-type">
       <option value="Lux">Lux</option>
       <option value="Lux-Black">Lux Black</option>
       <option value="Lux-Black-XL">Lux Black XL</option>
@@ -86,8 +86,7 @@ form .btn {
     </select>
     
     <br>
-    <a href="getCabPrice" class="btn btn-primary">Calculate Price</a>
-      </a>
+    <button type="submit">Get Cab Price </button>
 
     <br>
     <br>
@@ -104,9 +103,9 @@ form .btn {
     <br>
         <br>
 
+</form>
         <input type="submit" value="Log Out" href='logout'>
         
-  </form>
 </div>
 
 </body>
