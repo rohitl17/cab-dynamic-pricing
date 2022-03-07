@@ -3,7 +3,7 @@ from geopy.geocoders import GoogleV3
 import geopy.distance
 import googlemaps
 import json
-
+import re
 
 class GeoSpacialData:
     def __init__(self, source, destination):
@@ -32,3 +32,14 @@ class GeoSpacialData:
         self.geo_df['dest_long'] = locationB.longitude
         
         return geo_df
+    
+    def get_distance(self):
+        """""
+        
+        
+        """""
+        result = gmaps.distance_matrix(self.source, self.destination, mode='driving')
+        dist_km = result['rows'][0]['elements'][0]['distance']['text']
+        distance = float(re.sub(r'\D+$','',dist_km))
+        
+        return distance    
