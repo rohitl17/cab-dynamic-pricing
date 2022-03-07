@@ -42,4 +42,16 @@ class GeoSpacialData:
         dist_km = result['rows'][0]['elements'][0]['distance']['text']
         distance = float(re.sub(r'\D+$','',dist_km))
         
-        return distance    
+        return distance   
+    
+    def get_duration(self):
+        """""
+        
+        
+        """""
+        result = gmaps.distance_matrix(self.source, self.destination, mode='driving')
+        duration_mins = result['rows'][0]['elements'][0]['duration']['text']
+        duration = float(re.sub(r'\D+$','',duration_mins))
+        
+        return duration
+        
