@@ -1,5 +1,5 @@
 import requests, json
-import software_configuration as config
+import configuration_files.software_configuration as config
 
 def weather_information(latitude, longitude):
     '''

@@ -1,7 +1,7 @@
 from flask_login import UserMixin
-import software_configuration as cfg
 import pandas as pd
 
+users_csv_path='database/users.csv'
 
 class User(UserMixin):
     '''
@@ -15,7 +15,6 @@ class User(UserMixin):
         self.id = id_
         self.name = name
         self.email = email
-        self.user_information=pd.DataFrame('../data/user.csv')
 
     @staticmethod
     def get(user_id):
@@ -25,9 +24,10 @@ class User(UserMixin):
         return : Object of the User class with required details
         '''
         
-        specific_user_details=self.user_information.loc[self.user_information['user_id']==self.id]
-        
-        return User(specific_user_details['user_id'], specific_user_details['name'], specific_user_details['email'])
+        user_information=pd.read_csv(users_csv_path)
+        specific_user_details=user_information.loc[user_information['user_id']==user_id]
+
+        return User(specific_user_details['user_id'][0], specific_user_details['name'][0], specific_user_details['email'][0])
 
     @staticmethod
     def create(id_, name, email):
@@ -37,17 +37,15 @@ class User(UserMixin):
         return: True if successfully added to the database
         return: False if any error while adding to the database
         '''        
-        
         try:
-            
-            user_details={'user_id': id_, 'name':name, 'email':email}
-            df_user = pd.DataFrame.from_dict(user_details)
-            self.user_information.append(df_user, ignore_index=True)
-            self.user_information.to_csv('../data/user.csv')
-            
+            user_information=pd.read_csv(users_csv_path)
+            current_user = pd.DataFrame({'user_id':[id_], 'name':[name], 'email':[email]})
+
+            user_information = pd.concat([user_information, current_user])
+            user_information.to_csv(users_csv_path, index=None)
             return True
         
-        except:
+        except: 
+            print ("User creation failed")
             return False
-
-
+        
