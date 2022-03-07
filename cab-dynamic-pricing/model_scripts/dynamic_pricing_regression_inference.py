@@ -11,6 +11,8 @@ class CabPricePredictor:
         self.data_frame = data_frame
         self.uber = pd.DataFrame()
         self.lyft = pd.DataFrame()
+        self.uber_train = pd.DataFrame()
+        self.lyft_train = pd.DataFrame()
         
     def df_modification(self):   
         """
@@ -60,3 +62,18 @@ class CabPricePredictor:
         lyft_mlr_model = pickle.load(open(filename, 'rb'))
         lyft_price = loaded_model.predict(self.lyft)
         return lyft_price
+
+    def df_append(self):
+        """
+        
+        
+        
+        """
+        self.uber_train =  pd.read_csv("../feedback_app/training_testing_data/uber_train_mlr.csv")
+        self.uber_train.append(self.uber,ignore_index=False, verify_integrity=False, sort=None)
+        self.uber_train.to_csv("../feedback_app/training_testing_data/uber_train_mlr.csv")
+        
+        self.lyft_train =  pd.read_csv("../feedback_app/training_testing_data/lyft_train_mlr.csv")
+        self.lyft_train.append(self.uber,ignore_index=False, verify_integrity=False, sort=None)
+        self.lyft_train.to_csv("../feedback_app/training_testing_data/lyft_train_mlr.csv")
+        
