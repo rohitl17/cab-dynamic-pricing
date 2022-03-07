@@ -177,12 +177,10 @@ def getCabPrice():
     print ("hi")
     
     source = request.form.get('Source')
-    print (source)
     destination = request.form.get('Destination')
     uber_cab_type = request.form.get('uber-cab-type')
-    lyft_cab_type = request.args.get('lyft-cab-type')
-    
-    print (source, destination, uber_cab_type, lyft_cab_type)
+    lyft_cab_type = request.form.get('lyft-cab-type')
+        
     source_latitude, source_longitude=google_maps(source)
     destination_latitude, destination_longitude=google_maps(destination)
     distance, ETA = google_maps_distance_matrix(source, destination)
