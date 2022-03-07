@@ -36,8 +36,6 @@ class SurgePriceModel:
         rf = RandomForestClassifier(n_estimators = 10, class_weight ='balanced')
         rf.fit(feature_train, target_train)
         
-        y_pred = rf.predict(feature_test)
-        
         #getting time stamp to append it into our model
         timestamp=datetime.now()
         result_rf_model['timestamp'] = timestamp
