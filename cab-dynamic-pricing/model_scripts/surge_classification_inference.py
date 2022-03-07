@@ -4,8 +4,10 @@ import pickle
 
 from sklearn.ensemble import RandomForestClassifier
 from datetime import datetime
+import pickle
 
-class SurgePriceClassifer:
+
+class SurgePriceClassifier:
     def __init__(self, data_frame):
         """
         
@@ -39,8 +41,8 @@ class SurgePriceClassifer:
         pickle load.
         
         """
-        self.get_rush_hour(self.data_frame)
-        filename = "../model_weights/surge_classification_rf_model.sav"
+        self.get_rush_hour()
+        filename = "model_weights/surge_classification_rf_model.sav"
         loaded_model = pickle.load(open(filename, 'rb'))
         result = loaded_model.predict(self.data_frame)
         return self.predictive_surge_mapping[int(result)]
