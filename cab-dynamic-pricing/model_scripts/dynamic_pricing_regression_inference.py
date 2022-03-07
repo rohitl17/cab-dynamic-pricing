@@ -68,11 +68,16 @@ class CabPricePredictor:
         
         
         """
-        self.uber_train =  pd.read_csv("../feedback_app/training_testing_data/uber_train_mlr.csv")
-        self.uber_train.append(self.uber,ignore_index=False, verify_integrity=False, sort=None)
-        self.uber_train.to_csv("../feedback_app/training_testing_data/uber_train_mlr.csv")
+        uber_ndf = pd.DataFrame()
+        lyft_ndf = pd.DataFrame()
+        uber_train = pd.DataFrame()
+        lyft_train = pd.DataFrame()
         
-        self.lyft_train =  pd.read_csv("../feedback_app/training_testing_data/lyft_train_mlr.csv")
-        self.lyft_train.append(self.uber,ignore_index=False, verify_integrity=False, sort=None)
-        self.lyft_train.to_csv("../feedback_app/training_testing_data/lyft_train_mlr.csv")
+        uber_train =  pd.read_csv("../feedback_app/training_testing_data/uber_train_mlr.csv")
+        uber_ndf = pd.concat([uber_train, self.uber], axis=0)
+        uber_ndf.to_csv("../feedback_app/training_testing_data/uber_train_mlr.csv")
+        
+        lyft_train =  pd.read_csv("../feedback_app/training_testing_data/lyft_train_mlr.csv")
+        lyft_ndf = pd.concat([lyft_train, self.lyft], axis=0)
+        lyft_ndf.to_csv("../feedback_app/training_testing_data/lyft_train_mlr.csv")
         
