@@ -35,7 +35,7 @@ class PricePredictModel:
         self.result_uber = pd.DataFrame
         self.result_lyft = pd.DataFrame
         
-    def uber_train_test(self):
+    def uber_train_test(self,Xuber_train,Yuber_train,Xuber_test,Yuber_test,result_uber):
         
         """
 
@@ -59,7 +59,7 @@ class PricePredictModel:
         result_uber.tocsv('./result/uber_price_mlr' + timestamp + '.csv')
         
     
-    def lyft_train_test(self):
+    def lyft_train_test(self,Xlyft_train,Ylyft_train,Xlyft_test,Ylyft_test,result_lyft):
         
         """
 
