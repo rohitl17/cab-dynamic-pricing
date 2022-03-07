@@ -2,17 +2,22 @@ import pandas as pd
 
 class CabPricePredictor:
     def __init__(self, data_frame):
-        ''''''
+        """
         
-        ''''''
+        Loading the passed dataframe and creating empty data frames for 
+        Uber and Lyft.
+        
+        """
         self.data_frame = data_frame
         self.uber = pd.DataFrame()
         self.lyft = pd.DataFrame()
         
     def df_modification(self):   
-        '''''''
+        """
         
-        '''''''
+        Splitting the columns in the dataframe into Uber and Lyft cab types.
+        
+        """
         uber_list = ['Black','Black SUV', 'UberPool', 'UberX', 'UberXL', 'WAV']
         lyft_list = ['Lux','Lux Black', 'Lux Black XL', 'Lyft', 'Lyft XL', 'Shared']
         
@@ -35,18 +40,22 @@ class CabPricePredictor:
         
         
     def get_uber_price(self):
-        ''''''
+        """
         
-        ''''''
+        loading multi linear regression model for Uber to get the price.
+        
+        """
         filename = "../model_weights/uber_mlr_model.sav"
         uber_mlr_model = pickle.load(open(filename, 'rb'))
         uber_price = loaded_model.predict(self.uber)
         return uber_price
         
     def get_lyft_price(self):
-        ''''''
+        """
         
-        ''''''
+        loading multi linear regression model for Lyft to get the price.
+        
+        """
         filename = "../model_weights/lyft_mlr_model.sav"
         lyft_mlr_model = pickle.load(open(filename, 'rb'))
         lyft_price = loaded_model.predict(self.lyft)
