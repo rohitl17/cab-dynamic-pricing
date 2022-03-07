@@ -106,17 +106,13 @@ def index():
     Homepage for the end user, which shows the google login button
     '''
     
-    
     if current_user.is_authenticated:
         
-        return (
-            "<p>Hello, {}! You're logged in! We would like to take you on a optimized ride! Email: {}</p>"
-            '<a class="button" href="/logout">Logout</a>'.format(
-                current_user.name, current_user.email
-            )
-        )
+        data={'name':current_user.name}
+        return render_template('template_page2.html', data=data)
+            
     else:
-        return render_template('login.html')
+        return render_template('login_index.html')
 
     
 @app.route('/login')
