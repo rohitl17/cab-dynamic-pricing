@@ -1,4 +1,5 @@
-## cab-dynamic-pricing
+## Easy Cabs
+Easy Cabs helps you in getting the dynamic pricing of an Uber and Lyft. Input your source and destination and Easy Cabs will take into account your lattitude, longitufe, weather forecast and predict the surge pricing for your rides on both the apps. The end user can then make a decision on which cab would be the best for them in terms of cost and ETA.
 
 ## Project Distribution
 
@@ -53,3 +54,15 @@ cab-dynamic-pricing/
   |- requirements.txt
   |- setup.py
 ```
+## Installation
+
+
+## Usage
+
+To see how to use the package to get instance recommendation, 
+refer to the [example notebook](examples/examples.ipynb)
+
+---
+## The Output
+Below is an image of how the output of our recommendation looks like.
+![sample_reccommendation](./docs/sample-recommendation.PNG)
