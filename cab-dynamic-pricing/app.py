@@ -19,8 +19,10 @@ from flask_login import (
     logout_user,
 )
 
-from cab_dynamic_pricing.surge_classification_inference import SurgePriceClassifier
-from cab_dynamic_pricing.dynamic_pricing_regression_inference import CabPricePredictor
+from model_scripts.surge_classification_inference import SurgePriceClassifer
+from model_scripts.dynamic_pricing_regression_inference import CabPricePredictor
+from utils.geospatial_information import GeoSpatialData
+from utils.weather_information import weather_information
 
 
 '''
@@ -177,30 +179,30 @@ def getCabPrice():
     param: source, destination, cab_price
     return: json object for result
     '''
-    print ("hi")
     
     source = request.form.get('Source')
     destination = request.form.get('Destination')
     uber_cab_type = request.form.get('uber-cab-type')
     lyft_cab_type = request.form.get('lyft-cab-type')
         
-    geoloc=GeoSpatialData("Haymarket Square Boston", "Northeastern University Boston")
+    geoloc=GeoSpatialData(source, destination)
     geolocation_df=geoloc.get_location()
     
     distance = geoloc.get_distance()
     estimated_time = geoloc.get_duration()
     
     # Call uber and lyft API
-    uber_original_surge='1.0'
+    uber_original_surge=1.0
      
     # Lyft not available
-    lyft_original_surge = '1.0'
+    lyft_original_surge =1.0
     
-    
+
     '''
     Surge price classification model Inference
     '''
     surge_inference_df=weather_information(geolocation_df['source_lat'][0], geolocation_df['source_long'][0])
+    print (surge_inference_df)
     surge_inference_df['surge_mult']=[(uber_original_surge+lyft_original_surge)/2]
     surge_calculator=SurgePriceClassifier(surge_inference_df)
     surge_multiplier=surge_calculator.surge_prediction_model()
