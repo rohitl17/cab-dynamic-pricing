@@ -24,7 +24,7 @@ class SurgePriceModel:
         self.feature_test = testing_dataframe[['temp','clouds','pressure','rain','humidity','wind','rush_hr', 'date_day', 'location_latitude','location_longitude']]
         
         
-    def training_and_evaluation(self, feature_train, target_train, feature_test):
+    def train_surge_classifier(self, feature_train, target_train, feature_test):
         
         """
         
