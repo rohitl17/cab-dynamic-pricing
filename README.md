@@ -1,6 +1,27 @@
 ## Easy Cabs
 Easy Cabs helps you in getting the dynamic pricing of an Uber and Lyft. Input your source and destination and Easy Cabs will take into account your lattitude, longitufe, weather forecast and predict the surge pricing for your rides on both the apps. The end user can then make a decision on which cab would be the best for them in terms of cost and ETA.
 
+## Background
+
+
+## Data
+![Data Set](https://www.kaggle.com/ravi72munde/uber-lyft-cab-prices)
+Features extracted from the dataset: -
+  - cab_type : Uber or Lyft.
+  - clouds : presence or absence of clouds.
+  - destination : name of the destination in words.
+  - humidity : humidity in percentage.
+  - location : location of the place where the weather is recorded.
+  - pressure : atmospheric pressure in millibar.
+  - price : price estimate for the ride in USD.
+  - rain : rain in inches for the last hour.
+  - name : type of the car specified, eg. X, XL.
+  - source : name of the source in words.
+  - surge_multiplier : 4 values mentioned. 
+  - temp : temperature in Fahrenheit.
+  - time_stamp : start of the cab journey in epoch units.
+  - wind : wind speed in miles per hour.
+
 ## Project Distribution
 
 ```
