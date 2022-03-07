@@ -60,3 +60,6 @@ class CabPricePredictor:
         lyft_mlr_model = pickle.load(open(filename, 'rb'))
         lyft_price = loaded_model.predict(self.lyft)
         return lyft_price
+    
+    def train_df_append(self):
+        
