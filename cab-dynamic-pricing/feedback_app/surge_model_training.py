@@ -43,7 +43,7 @@ class SurgePriceModel:
         filename = ('./model_dumps/surge_classification_rf_model' + timestamp)
         pickle.dump(rf, open(filename,'wb'))
         loaded_model = pickle.load(open(filename, 'rb'))
-        result = loaded_model.score(feature_train, target_train)
+        result = loaded_model.score(feature_test, target_test)
         result_rf_model['model_score'] =result
         
         #saving the result_rf_model dataframe into results
