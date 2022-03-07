@@ -184,19 +184,14 @@ def getCabPrice():
     uber_cab_type = request.form.get('uber-cab-type')
     lyft_cab_type = request.form.get('lyft-cab-type')
         
-    source_latitude, source_longitude=google_maps(source)
-    destination_latitude, destination_longitude=google_maps(destination)
-    distance, ETA = google_maps_distance_matrix(source, destination)
+    geoloc=GeoSpatialData("Haymarket Square Boston", "Northeastern University Boston")
+    geolocation_df=geoloc.get_location()
     
-    source_latitude='10.25'
-    source_longitude='100.25'
-    destination_latitude='12.5'
-    destination_longitude='1000'
-    distance='0.2'
-    ETA=15
+    distance = geoloc.get_distance()
+    estimated_time = geoloc.get_duration()
     
     # Call uber and lyft API
-    uber_original_surge='1.5'
+    uber_original_surge='1.0'
      
     # Lyft not available
     lyft_original_surge = '1.0'
@@ -205,7 +200,7 @@ def getCabPrice():
     '''
     Surge price classification model Inference
     '''
-    surge_inference_df=weather_information(source_latitude, source_longitude)
+    surge_inference_df=weather_information(geolocation_df['source_lat'][0], geolocation_df['source_long'][0])
     surge_inference_df['surge_mult']=[(uber_original_surge+lyft_original_surge)/2]
     surge_calculator=SurgePriceClassifier(surge_inference_df)
     surge_multiplier=surge_calculator.surge_prediction_model()
@@ -213,7 +208,7 @@ def getCabPrice():
     '''
     Cab Price Model inference
     '''
-    cab_price_inference_df = pd.DataFrame([[source_latitude], [source_longitude], [destination_latitude], [destination_longitude], [distance], [surge_multiplier], [uber_cab_type], [lyft_cab_type], [uber_price], [lyft_price]], columns=['source_lat','source_long', 'dest_lat', 'dest_long','distance','surge_multiplier','uber_cab_type', 'lyft_cab_type', 'uber_price', 'lyft_price'])
+    cab_price_inference_df = pd.DataFrame([[geolocation_df['source_lat'][0]], [geolocation_df['source_long'][0]], [geolocation_df['dest_lat'][0]], [geolocation_df['dest_long'][0]], [distance], [surge_multiplier], [uber_cab_type], [lyft_cab_type], [uber_price], [lyft_price]], columns=['source_lat','source_long', 'dest_lat', 'dest_long','distance','surge_multiplier','uber_cab_type', 'lyft_cab_type', 'uber_price', 'lyft_price'])
 
     
     cab_price_object=CabPricePredictor(cab_price_inference_df)

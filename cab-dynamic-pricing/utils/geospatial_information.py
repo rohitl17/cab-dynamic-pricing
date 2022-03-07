@@ -22,23 +22,24 @@ class GeoSpatialData:
         
         
         """""
-        gmaps = googlemaps.Client(key=API)
+        geolocator = GoogleV3(api_key=self.API)
 
         locationA = geolocator.geocode(self.source)
         locationB = geolocator.geocode(self.destination)
         
-        self.geo_df['source_lat'] = locationA.latitude
-        self.geo_df['source_long'] = locationA.longitude
-        self.geo_df['dest_lat'] = locationB.latitude
-        self.geo_df['dest_long'] = locationB.longitude
+        self.geo_df['source_lat'] = [locationA.latitude]
+        self.geo_df['source_long'] = [locationA.longitude]
+        self.geo_df['dest_lat'] = [locationB.latitude]
+        self.geo_df['dest_long'] = [locationB.longitude]
         
-        return geo_df
+        return self.geo_df
     
     def get_distance(self):
         """""
         
         
         """""
+        gmaps = googlemaps.Client(key=self.API)
         result = gmaps.distance_matrix(self.source, self.destination, mode='driving')
         dist_km = result['rows'][0]['elements'][0]['distance']['text']
         distance = float(re.sub(r'\D+$','',dist_km))
@@ -50,9 +51,9 @@ class GeoSpatialData:
         
         
         """""
+        gmaps = googlemaps.Client(key=self.API)
         result = gmaps.distance_matrix(self.source, self.destination, mode='driving')
         duration_mins = result['rows'][0]['elements'][0]['duration']['text']
         duration = float(re.sub(r'\D+$','',duration_mins))
         
         return duration
-        
