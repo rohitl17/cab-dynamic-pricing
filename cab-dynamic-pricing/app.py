@@ -166,7 +166,7 @@ def googleAuthorize():
     return redirect(url_for("index"))
 
 
-@app.route("/get_cab_price")
+@app.route("/getCabPrice")
 def run_main():
     '''
     This API handles the main business logic of the whole application. Calls the Google Maps API to get the latitude and longitude for source and destination. Calls the openweathermap API to get the weather details. Calls the model inference APIs for surge price classification and linear regression for calculating the dynamic price for uber and lyft APIs.
@@ -174,12 +174,15 @@ def run_main():
     param: source, destination, cab_price
     return: json object for result
     '''
+    print ("hi")
     
-    source = request.args.get('source')
+    source = request.form['source']
+    print (source)
     destination = request.args.get('destination')
     uber_cab_type = request.args.get('uber_cab_type')
     lyft_cab_type = request.args.get('lyft_cab_type')
     
+    print (source, destination, uber_cab_type, lyft_cab_type)
     source_latitude, source_longitude=google_maps(source)
     destination_latitude, destination_longitude=google_maps(destination)
     distance, ETA = google_maps_distance_matrix(source, destination)
