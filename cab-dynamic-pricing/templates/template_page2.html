@@ -39,7 +39,7 @@ input[type=submit]:hover {
 </head>
 <body>
 
-<h3>Welcome to EasyCabs</h3>
+<h3>Hi {{data.name}}, Welcome to EasyCabs!</h3>
 
 <div class="container">
   <form action="/action_page.php">
@@ -57,7 +57,7 @@ input[type=submit]:hover {
       <option value="UberX">Uber X</option>
       <option value="UberXL">Uber XL</option>
       <option value="WAV">WAV</option>
-    </select> 
+    </select>
 
     <label for="cab-type">Lyft Cab Type</label>
     <select id="cab-type" name="cab-type">
@@ -67,14 +67,14 @@ input[type=submit]:hover {
       <option value="Lyft">Lyft</option>
       <option value="Lyft-XL">Lyft XL</option>
       <option value="Shared">Shared</option>
-    </select> 
+    </select>
 
     <input type="submit" value="Calculate Price">
 
     <br>
     <br>
     <br>
-    
+
     <label for="uber-price-op">Uber Price</label>
     <output name="Uber Price"></output>
     <br>
@@ -82,6 +82,12 @@ input[type=submit]:hover {
     <label for="lyft-price-op">Lyft Price</label>
     <output name="Lyft Price"></output>
 
+
+    <br>
+        <br>
+
+        <input type="submit" value="Log Out">
+        
   </form>
 </div>
 
