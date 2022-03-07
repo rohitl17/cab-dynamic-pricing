@@ -1,11 +1,9 @@
 import numpy as np
 import pandas as pd
+import pickle
 
 from sklearn.ensemble import RandomForestClassifier
 from datetime import datetime
-
-import pickle
-
 
 class SurgePriceClassifer:
     def __init__(self, data_frame):
@@ -46,3 +44,15 @@ class SurgePriceClassifer:
         loaded_model = pickle.load(open(filename, 'rb'))
         result = loaded_model.predict(self.data_frame)
         return self.predictive_surge_mapping[int(result)]
+    
+    def df_append(self):
+        """
+        
+        appending the existing training datasets with the current record.
+        
+        """
+        
+        model_train = pd.read_csv("../feedback_app/training_testing_data/training_surge_price_classifier_df.csv")
+        new_df = pd.concat([self.dataframe, model_train], axis=0)
+        new_df.to_csv("../feedback_app/training_testing_data/training_surge_price_classifier_df.csv")
+        
