@@ -1,6 +1,13 @@
 authlib
-requests
 flask-login
 flask
+requests
+numpy
 python
 openweathermap
+pandas
+pickle
+pytest
+setuptools
+scipy
+scikit-learn
