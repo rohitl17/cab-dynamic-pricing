@@ -22,9 +22,9 @@ class SurgePriceModel:
         self.feature_train = training_dataframe[['temp','clouds','pressure','rain','humidity','wind','rush_hr', 'date_day', 'location_latitude','location_longitude']]
         self.target_train = training_dataframe[['surge_mult']]
         self.feature_test = testing_dataframe[['temp','clouds','pressure','rain','humidity','wind','rush_hr', 'date_day', 'location_latitude','location_longitude']]
+        self.result_rf_model = pd.DataFrame()
         
-        
-    def train_surge_classifier(self, feature_train, target_train, feature_test):
+    def train_surge_classifier(self, feature_train, target_train, feature_test, result_rf_model):
         
         """
         
