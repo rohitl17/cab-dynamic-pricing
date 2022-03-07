@@ -67,7 +67,6 @@ class CabPricePredictor:
         """
         
         
-        
         """
         self.uber_train =  pd.read_csv("../feedback_app/training_testing_data/uber_train_mlr.csv")
         self.uber_train.append(self.uber,ignore_index=False, verify_integrity=False, sort=None)

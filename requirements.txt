@@ -11,3 +11,5 @@ pytest
 setuptools
 scipy
 scikit-learn
+geopy
+googlemaps

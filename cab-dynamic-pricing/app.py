@@ -19,6 +19,9 @@ from flask_login import (
     logout_user,
 )
 
+from cab_dynamic_pricing.surge_classification_inference import SurgePriceClassifier
+from cab_dynamic_pricing.dynamic_pricing_regression_inference import CabPricePredictor
+
 
 '''
 Required Flask application, Oauth, Session Management Initializations
@@ -204,19 +207,21 @@ def getCabPrice():
     '''
     surge_inference_df=weather_information(source_latitude, source_longitude)
     surge_inference_df['surge_mult']=[(uber_original_surge+lyft_original_surge)/2]
-    
+    surge_calculator=SurgePriceClassifier(surge_inference_df)
+    surge_multiplier=surge_calculator.surge_prediction_model()
     
     '''
     Cab Price Model inference
     '''
-    cab_price_inference_df = pd.DataFrame([source_latitude, source_longitude, destination_latitude, destination_longitude, distance, surge_multiplier, uber_cab_type, lyft_cab_type, uber_price, lyft_price], columns=['source_lat','source_long', 'dest_lat', 'dest_long','distance','surge_multiplier','uber_cab_type', 'lyft_cab_type', 'uber_price', 'lyft_price'])
+    cab_price_inference_df = pd.DataFrame([[source_latitude], [source_longitude], [destination_latitude], [destination_longitude], [distance], [surge_multiplier], [uber_cab_type], [lyft_cab_type], [uber_price], [lyft_price]], columns=['source_lat','source_long', 'dest_lat', 'dest_long','distance','surge_multiplier','uber_cab_type', 'lyft_cab_type', 'uber_price', 'lyft_price'])
 
     
     cab_price_object=CabPricePredictor(cab_price_inference_df)
-    uber_price, lyft_price = cab_price_object.get_price()
+    uber_price = cab_price_object.get_uber_price()
+    lyft_price = cab_price_object.get_lyft_price()
     
-    
-    
+ 
+
     return json_object
 
 

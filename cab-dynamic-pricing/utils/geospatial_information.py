@@ -4,14 +4,15 @@ import geopy.distance
 import googlemaps
 import json
 import re
+import configuration_files.software_configuration as cfg
 
-class GeoSpacialData:
+class GeoSpatialData:
     def __init__(self, source, destination):
         """""
         
         
         """""
-        self.API = ""
+        self.API = cfg.google_maps_api["api_key"]
         self.source = source
         self.destination = destination
         self.geo_df = pd.DataFrame()
