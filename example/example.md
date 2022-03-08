@@ -14,7 +14,7 @@ Open your local terminal and create a new directory for your project (if needed)
 <br>
  
 ## Step 3:
-There are several API dependencies needed to run this code effectively. Please read the [API documentation](../documentation/api_documentation.pdf) to see how you can get your own API credentials.  
+There are several API dependencies needed to run this code effectively. Please read the [API documentation](../documentation/api_documentation.md) to see how you can get your own API credentials.  
 <br>
  
 ## Step 4:
