@@ -29,9 +29,9 @@ class TestPricePredictModel(unittest.TestCase):
 		uber_test = pd.read_csv('../feedback_app/training_testing_data/uber_test_mlr.csv')
 		
 		xtrain= uber_train[['source_lat','source_long', 'dest_lat', 'dest_long','distance','surge_multiplier','Black','Black SUV', 'UberPool', 'UberX', 'UberXL', 'WAV']]
-		ytrain= uber_train['price']	
+		ytrain= uber_train['uber_price']	
 		xtest= uber_test[['source_lat','source_long', 'dest_lat', 'dest_long','distance','surge_multiplier','Black','Black SUV', 'UberPool', 'UberX', 'UberXL', 'WAV']]
-		ytest= uber_test['price']
+		ytest= uber_test['uber_price']
 		
 		uber_model = linear_model.LinearRegression()
 		uber_model.fit(xtrain, ytrain)
