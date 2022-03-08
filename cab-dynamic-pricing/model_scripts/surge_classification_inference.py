@@ -44,6 +44,7 @@ class SurgePriceClassifier:
         self.get_rush_hour()
         filename = "model_weights/surge_classification_rf_model.sav"
         loaded_model = pickle.load(open(filename, 'rb'))
+        self.data_frame=self.data_frame.drop(columns=['id','surge_mult'])
         result = loaded_model.predict(self.data_frame)
         return self.predictive_surge_mapping[int(result)]
     

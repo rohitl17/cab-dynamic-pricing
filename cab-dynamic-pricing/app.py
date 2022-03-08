@@ -3,6 +3,7 @@ Script that handles the main functionality of the whole project. All the API cal
 '''
 from flask import Flask
 import json
+import pandas as pd
 
 import configuration_files.software_configuration as config
 from utils.user import User
@@ -179,14 +180,13 @@ def getCabPrice():
     param: source, destination, cab_price
     return: json object for result
     '''
-    print ("hi")
     
     source = request.form.get('Source')
     destination = request.form.get('Destination')
     uber_cab_type = request.form.get('uber-cab-type')
     lyft_cab_type = request.form.get('lyft-cab-type')
         
-    geoloc=GeoSpatialData("Haymarket Square Boston", "Northeastern University Boston")
+    geoloc=GeoSpatialData(source, destination)
     geolocation_df=geoloc.get_location()
     
     distance = geoloc.get_distance()
@@ -207,19 +207,21 @@ def getCabPrice():
     surge_calculator=SurgePriceClassifier(surge_inference_df)
     surge_multiplier=surge_calculator.surge_prediction_model()
     
+    uber_price=20
+    lyft_price=20
     '''
     Cab Price Model inference
     '''
-    cab_price_inference_df = pd.DataFrame([[geolocation_df['source_lat'][0]], [geolocation_df['source_long'][0]], [geolocation_df['dest_lat'][0]], [geolocation_df['dest_long'][0]], [distance], [surge_multiplier], [uber_cab_type], [lyft_cab_type], [uber_price], [lyft_price]], columns=['source_lat','source_long', 'dest_lat', 'dest_long','distance','surge_multiplier','uber_cab_type', 'lyft_cab_type', 'uber_price', 'lyft_price'])
-
+    cab_price_inference_df = pd.DataFrame({
+    'source_lat': [geolocation_df['source_lat'][0]],'source_long': [geolocation_df['source_long'][0]] , 'dest_lat': [geolocation_df['dest_lat'][0]], 'dest_long': [geolocation_df['dest_long'][0]],'distance': [distance],'surge_multiplier': [surge_multiplier],'uber_cab_type':[uber_cab_type],'lyft_cab_type': [lyft_cab_type], 'uber_price':[uber_price], 'lyft_price':[lyft_price]
+    })
     
     cab_price_object=CabPricePredictor(cab_price_inference_df)
-    uber_price = cab_price_object.get_uber_price()
-    lyft_price = cab_price_object.get_lyft_price()
+    uber_predicted_price, lyft_predicted_price=cab_price_object.cab_price_prediction()
     
- 
-
-    return json_object
+    result={'uber_price':uber_predicted_price, 'lyft_price':lyft_predicted_price, 'estimated_time': estimated_time, 'distance':round(distance*0.621371,2)}
+    
+    return render_template('final_page.html', result=result)
 
 
 
