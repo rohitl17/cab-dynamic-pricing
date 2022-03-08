@@ -1,9 +1,0 @@
-1) Distance Matrix API (from Google Maps): This API is used to access travel distance (in kms) and time (in mins) for a matrix of origins and destinations.
-   Documentation: https://developers.google.com/maps/documentation/distance-matrix/overview
-
-2) Geocoding API (from Google Maps): This API is used to convert addresses (source and destination) into geographic coordinates (latitude and longitude)
-   Documentation: https://developers.google.com/maps/documentation/geocoding/overview?hl=en_US 
- 
-3) Weather API (from OpenWeatherMap): This API is used to access current weather (clouds,destination,humidity,pressure and wind) data for any location. 
-   Documentation: https://openweathermap.org/current
-
