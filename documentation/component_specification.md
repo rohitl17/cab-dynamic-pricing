@@ -50,3 +50,4 @@ Components interaction
 
 The Output
 The HTML file created by report_generator:
+screenshots/image_api3.png
