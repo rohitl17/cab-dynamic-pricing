@@ -9,7 +9,9 @@ class CabPricePredictor(unittest.TestCase):
         uber = pd.read_csv('../feedback_app/training_testing_data/uber_test_mlr.csv')
 
         message = "Price output is not created"
-        self.assertNotEqual(uber['price'].shape, 0, message)
+        price=uber[['uber_price']]
+        message = "ERROR : test_get_uber_price is failing"
+        self.assertIsNotNone(price,message)
 
     def test_check_input(self):
         lyft = pd.read_csv('../feedback_app/training_testing_data/lyft_test_mlr.csv')
@@ -18,5 +20,3 @@ class CabPricePredictor(unittest.TestCase):
         self.assertIsNotNone(lyft['distance'], message)    
 
 unittest.main()
-
-
