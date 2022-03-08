@@ -15,7 +15,7 @@ branches:
 install:
     - pip install coverage
     - pip install coveralls
-    - pip install pycodestyle
+    - pip install flake8
     - pip install -r requirements.txt
 
 
