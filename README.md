@@ -110,7 +110,7 @@ cab-dynamic-pricing/
 
 Installing the package using the pip command:
 ```bash
-pip install cab_dynamic_pricing
+pip install cab-dynamic-pricing
 ```  
 Install the dependencies from the requirements.txt file using the below:
 ```bash
