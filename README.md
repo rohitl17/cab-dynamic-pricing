@@ -9,8 +9,13 @@ Easy Cabs helps you in getting the dynamic pricing of an Uber and Lyft. Input yo
 A web application for calculating the dynamic price of Uber and Lyft cabs depending on various attributes. 
 Machine learning models are built to calculate the surge multiplier and the price of the cab between two different locations across the city of Boston.
 The user enters the source and destination along with the choice of cab for Uber and Lyft each and hit the "Calculate Price" button.  
-The user will be prompted with the cost of price for the particular cab for Uber and Lyft in USD, along with the ETA in minutes and distance in miles.
+The user will be prompted with the cost of price for the particular cab for Uber and Lyft in USD, along with the ETA in minutes and distance in miles.  
 
+## Authors
+[Nayantara Mohan](https://github.com/nayantaramohan)
+[Rohit Lokwani](https://github.com/rohitl17)
+[Shubha Changappa Palachanda](https://github.com/shubha8196)
+  
 ## Data
 [Link to the Data Set](https://www.kaggle.com/ravi72munde/uber-lyft-cab-prices)   
 Features extracted from the dataset: -
@@ -37,8 +42,6 @@ cab-dynamic-pricing/
   |- cab-dynamic-pricing/
     |- __init__.py
     |- configuration_files/
-      |- __pycache__/
-        |- software_configuration.cpython-39.pyc
       |- software_configuration_format.py
     |- database/
       |- users.csv
@@ -86,26 +89,33 @@ cab-dynamic-pricing/
       |- weather_information.py
     | - app.py
   |- data/
-      |- cab_rides.csv.zip
+      |- cab_rides.csv.zipe
       |- weather.csv
+  |- documentation/
+      |- api_documentation.md
+      |- component_specification.md
+      |- functional_specification.md
+      |- screenshots/
   |- example
-      |- example.pdf
+      |- example.md
+      |- screenshots/
   |- .coveragerc
   |- .gitignore
-  |- Experimentation.ipynb
   |- LICENSE
   |- requirements.txt
   |- setup.py
 ```
 ## Installation
 
+Installing the package using the pip command:
+```bash
+pip install cab_dynamic_pricing
+```  
+Install the dependencies from the requirements.txt file using the below:
+```bash
+python -m pip install -r requirements.txt
+```
+## Usage and Output
 
-## Usage
-
-To see how to use the package to get instance recommendation, 
-refer to the [example notebook](examples/examples.ipynb)
-
----
-## The Output
-Below is an image of how the output of our recommendation looks like.
-![sample_reccommendation](./docs/sample-recommendation.PNG)
+To see how to use the package to get the dynamic pricing of Uber and Lyft, 
+refer to the [example file](./example/example.md)
