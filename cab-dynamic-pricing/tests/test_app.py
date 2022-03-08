@@ -1,18 +1,18 @@
+import unittest
+import pandas as pd
 import sys
 
-#sys.path.append ('/Users/stlp/Rohit/cab-dynamic-pricing-2/cab-dynamic-pricing/cab-dynamic-pricing')
 
-#import app
-import unittest
+class TestApp(unittest.TestCase):
+
+    def test_training_usercsv(self):
+        data=pd.read_csv('../database/users.csv')
+        self.assertEqual(len(data.columns),3)
+        self.assertEqual(type(data['user_id'][0]), str)
+        self.assertIsNotNone(data)
+        self.assertEqual(len(data.dropna()), len(data))
 
 
-class Teststring(unittest.TestCase):
-    def test_loop(self):
-        self.assertEqual('foo', 'foo')
-        
-    def 
-
-if __name__ == '__main__':
-    unittest.main()
+unittest.main()
       
 
