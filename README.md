@@ -12,9 +12,10 @@ The user enters the source and destination along with the choice of cab for Uber
 The user will be prompted with the cost of price for the particular cab for Uber and Lyft in USD, along with the ETA in minutes and distance in miles.  
 
 ## Authors
-[Nayantara Mohan](https://github.com/nayantaramohan)
-[Rohit Lokwani](https://github.com/rohitl17)
-[Shubha Changappa Palachanda](https://github.com/shubha8196)
+- [Nayantara Mohan](https://github.com/nayantaramohan)  
+- [Rohit Lokwani](https://github.com/rohitl17)  
+- [Shubha Changappa Palachanda](https://github.com/shubha8196)
+
   
 ## Data
 [Link to the Data Set](https://www.kaggle.com/ravi72munde/uber-lyft-cab-prices)   
@@ -117,5 +118,5 @@ python -m pip install -r requirements.txt
 ```
 ## Usage and Output
 
-To see how to use the package to get the dynamic pricing of Uber and Lyft, 
+To see how to use the package to get the dynamic pricing of Uber and Lyft,   
 refer to the [example file](./example/example.md)
