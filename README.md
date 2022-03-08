@@ -60,6 +60,10 @@ cab-dynamic-pricing/
       |- login_background.jpg
       |- login_index.html
       |- template_page2.html
+    |- test/
+      |-
+      |-
+      |-
     |- utils/
       |- geospatial_information.py
       |- lyft.py
@@ -72,6 +76,7 @@ cab-dynamic-pricing/
       |- cab_rides.csv.zip
       |- weather.csv
   |- example
+      |-
       |-
   |- .coveragerc
   |- .gitignore
