@@ -1,7 +1,7 @@
 import unittest
 import sys
 import pandas as pd 
-import dynamic_pricing_model_training as dpmt
+
 from sklearn import linear_model
 from sklearn.metrics import mean_squared_error, r2_score
 
