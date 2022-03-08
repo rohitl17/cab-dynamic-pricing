@@ -1,7 +1,7 @@
 import unittest
 import sys
 import pandas as pd 
-import dynamic_pricing_regression_inference as dpri
+
 
 class CabPricePredictor(unittest.TestCase):
 
