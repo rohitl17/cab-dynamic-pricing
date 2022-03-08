@@ -25,9 +25,10 @@ install:
 
 # the actual commands to run
 script:
-    - coverage run -m unittest discover cab-dynamic-pricing
+    - coverage run -m unittest discover
 
 # generate a coverage report to send to back to user
 after_success:
+    - coverage run --source=cab-dynamic-pricing -m pytest tests/
     - coverage report
     - coveralls
