@@ -5,7 +5,7 @@ googlemaps==2.5.1
 geopy==2.2.0
 jupyter==1.0.0
 requests
-numpy==1.20.1
+numpy==1.19.5
 python==3.9.5
 openweathermap
 pandas==1.2.4
