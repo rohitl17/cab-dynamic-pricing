@@ -5,7 +5,6 @@ googlemaps
 geopy
 requests
 numpy
-python
 openweathermap
 pandas
 pep8
