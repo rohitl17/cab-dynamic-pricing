@@ -1,4 +1,4 @@
-[![Build Status](https://app.travis-ci.com/rohitl17/cab-dynamic-pricing.svg?branch=main)](https://app.travis-ci.com/rohitl17/cab-dynamic-pricing) [![Coverage Status](https://coveralls.io/repos/github/rohitl17/cab-dynamic-pricing/badge.svg?branch=main)](https://coveralls.io/github/rohitl17/cab-dynamic-pricing?branch=main) ![contributors](https://img.shields.io/github/contributors/rohitl17/cab-dynamic-pricing.svg) ![codesize](https://img.shields.io/github/languages/code-size/rohitl17/cab-dynamic-pricing.svg)
+[![Build Status](https://app.travis-ci.com/rohitl17/cab-dynamic-pricing.png?branch=main)](https://app.travis-ci.com/rohitl17/cab-dynamic-pricing) [![Coverage Status](https://coveralls.io/repos/github/rohitl17/cab-dynamic-pricing/badge.png?branch=main)](https://coveralls.io/github/rohitl17/cab-dynamic-pricing?branch=main) ![contributors](https://img.shields.io/github/contributors/rohitl17/cab-dynamic-pricing.png) ![codesize](https://img.shields.io/github/languages/code-size/rohitl17/cab-dynamic-pricing.svg)
 
 ![logo file](/cab-dynamic-pricing/templates/logo.jpg)
 
@@ -15,25 +15,6 @@ The user will be prompted with the cost of price for the particular cab for Uber
 - [Nayantara Mohan](https://github.com/nayantaramohan)  
 - [Rohit Lokwani](https://github.com/rohitl17)  
 - [Shubha Changappa Palachanda](https://github.com/shubha8196)
-
-  
-## Data
-[Link to the Data Set](https://www.kaggle.com/ravi72munde/uber-lyft-cab-prices)   
-Features extracted from the dataset: -
-  - cab_type : Uber or Lyft.
-  - clouds : presence or absence of clouds.
-  - destination : name of the destination in words.
-  - humidity : humidity in percentage.
-  - location : location of the place where the weather is recorded.
-  - pressure : atmospheric pressure in millibar.
-  - price : price estimate for the ride in USD.
-  - rain : rain in inches for the last hour.
-  - name : type of the car specified, eg. X, XL.
-  - source : name of the source in words.
-  - surge_multiplier : 5 unique values mentioned. 
-  - temp : temperature in Fahrenheit.
-  - time_stamp : start of the cab journey in epoch units.
-  - wind : wind speed in miles per hour.
 
 ## Project Distribution
 
@@ -106,6 +87,26 @@ cab-dynamic-pricing/
   |- requirements.txt
   |- setup.py
 ```
+  
+  
+## Data
+[Link to the Data Set](https://www.kaggle.com/ravi72munde/uber-lyft-cab-prices)   
+Features extracted from the dataset: -
+  - cab_type : Uber or Lyft.
+  - clouds : presence or absence of clouds.
+  - destination : name of the destination in words.
+  - humidity : humidity in percentage.
+  - location : location of the place where the weather is recorded.
+  - pressure : atmospheric pressure in millibar.
+  - price : price estimate for the ride in USD.
+  - rain : rain in inches for the last hour.
+  - name : type of the car specified, eg. X, XL.
+  - source : name of the source in words.
+  - surge_multiplier : 5 unique values mentioned. 
+  - temp : temperature in Fahrenheit.
+  - time_stamp : start of the cab journey in epoch units.
+  - wind : wind speed in miles per hour.
+  
 ## Installation
 
 Installing the package using the pip command:
