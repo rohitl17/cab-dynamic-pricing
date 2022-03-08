@@ -5,7 +5,8 @@ Easy Cabs helps you in getting the dynamic pricing of an Uber and Lyft. Input yo
 
 
 ## Data
-![Data Set](https://www.kaggle.com/ravi72munde/uber-lyft-cab-prices)
+[Data Set](https://www.kaggle.com/ravi72munde/uber-lyft-cab-prices). 
+
 Features extracted from the dataset: -
   - cab_type : Uber or Lyft.
   - clouds : presence or absence of clouds.
@@ -68,6 +69,8 @@ cab-dynamic-pricing/
   |- data/
       |- cab_rides.csv.zip
       |- weather.csv
+  |- example
+      |-
   |- .coveragerc
   |- .gitignore
   |- Experimentation.ipynb
