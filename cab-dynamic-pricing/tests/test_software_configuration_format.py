@@ -11,5 +11,3 @@ class TestSoftwareConfiguration(unittest.TestCase):
 
         '''
         self.assertEqual(0,0)
-        
-unittest.main()
