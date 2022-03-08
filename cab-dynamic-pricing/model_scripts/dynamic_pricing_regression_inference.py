@@ -74,6 +74,7 @@ class CabPricePredictor:
     def df_append(self):
         """
         
+        Appending the training datasets with the current record.
         
         """
         uber_ndf = pd.DataFrame()
