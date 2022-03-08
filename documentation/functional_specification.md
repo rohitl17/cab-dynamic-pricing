@@ -2,7 +2,7 @@
 
 
 ### Background  
-There are various companies working in the cab domain. Uber and Lyft being amongst the top of them. Users have to put in the location in each of the apps to get the optimal cost. Our ML-based solution incoroporating surge overcomes this by being one-stop solution for comparing prices for different types of cabs. The surge calulation tries to replicate Uber's microservice for surge calculation by taking into account the rush hours, weather changes and location. The dynamic pricing ML model uses the surge, distance and other features to calculate the final price. Our goal is to suggest the user an appropriate cab type from Uber and Lyft as per their budgets and constraints.
+There are various companies working in the cab domain. Uber and Lyft being amongst the top of them. Users have to put in the location in each of the apps to get the optimal cost. Our ML-based solution incoroporating surge overcomes this by being a one-stop solution for comparing prices for different types of cabs. The surge calulation replicates Uber's microservice for surge calculation by taking into account the rush hours, weather changes and location. The dynamic pricing ML model uses the surge, distance, cab type source and destination location features to calculate the final price. Our goal is to suggest the user an appropriate cab type from Uber and Lyft as per their budgets and constraints.
 
 
 ### User profile  
@@ -21,8 +21,8 @@ There are various companies working in the cab domain. Uber and Lyft being among
     <li>USER: Enters source and destination.</li>
     <li>USER: Provides similar cab types for uber and lyft.</li>
     <li>PROGRAM: Runs the model for surge prediction.</li>
-    <li>PROGRAM: Runs the model for dynamic price calculation.</li>
-    <li>OUTPUT: Outcomes the price for uber, lyft respective cab types and ETA and distance between the source and destination.</li>
+    <li>PROGRAM: Runs the model for dynamic price calculation using the surge prediction model output.</li>
+    <li>OUTPUT: Outputs the price for uber, lyft respective cab types and ETA and distance between the source and destination.</li>
   </ol>
 </li> 
   
@@ -32,7 +32,7 @@ There are various companies working in the cab domain. Uber and Lyft being among
     <li>USER: Enters source and destination.</li>
     <li>USER: Provides luxury or different cab types for uber and lyft.</li>
     <li>PROGRAM: Runs the model for surge prediction.</li>
-    <li>PROGRAM: Runs the model for dynamic price calculation.</li>
+    <li>PROGRAM: Runs the model for dynamic price calculation using the surge prediction model output</li>
     <li>OUTPUT: Outcomes the price for uber, lyft respective cab types and ETA and distance between the source and destination.</li>
   </ol>
 </li>
