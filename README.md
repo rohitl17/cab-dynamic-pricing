@@ -1,4 +1,4 @@
-[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com//rohitl17/cab-dynamic-pricing/blob/master/LICENSE) ![contributors](https://img.shields.io/github/contributors/rohitl17/cab-dynamic-pricing.svg) ![codesize](https://img.shields.io/github/languages/code-size/rohitl17/cab-dynamic-pricing.svg) ![pullrequests](https://img.shields.io/github/issues-pr/rohitl17/cab-dynamic-pricing.svg)
+[![GitHub license](https://img.shields.io/github/license/rohitl17/StrapDown.js.svg)](https://github.com//rohitl17/cab-dynamic-pricing/blob/master/LICENSE) ![contributors](https://img.shields.io/github/contributors/rohitl17/cab-dynamic-pricing.svg) ![codesize](https://img.shields.io/github/languages/code-size/rohitl17/cab-dynamic-pricing.svg)
 
 
 ![logo file](/cab-dynamic-pricing/templates/logo.jpg)
