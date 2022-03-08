@@ -9,10 +9,10 @@ If login is successful, take the user to the next page else reload the home page
 ### Component 2: (getCabPrice)
 Input source, destination and type of cabs.  
 The component then calls the following subcomponents to get the required values:  
-i) Geospatial Data : Input: Source and Destination; Output: Latitude and Longitude, ETA and Distance. 
-ii) Weathermap API: Input: Source Latitude and Longitude; Output: Required weather parameters. 
-iii) Uber API: Input: source and destination; Output: dynamic Price and surge of the required cab <sub>*</sub>. 
-iv) Lyft API: Input: source and destination, Output: dynamic Price and surge of the required cab <sub>*</sub>
+1. Geospatial Data : Input: Source and Destination; Output: Latitude and Longitude, ETA and Distance. 
+2. Weathermap API: Input: Source Latitude and Longitude; Output: Required weather parameters. 
+3. Uber API: Input: source and destination; Output: dynamic Price and surge of the required cab <sub>*</sub>. 
+4. Lyft API: Input: source and destination, Output: dynamic Price and surge of the required cab <sub>*</sub>
 
 
 ### Component 3: (surge_price_classification_inference)
