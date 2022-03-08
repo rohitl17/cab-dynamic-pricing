@@ -10,7 +10,8 @@ class PricePredictModel:
         
         """
         
-
+        Reading the training datasets for Uber and Lyft and creating
+        features and target variables from each of these datasets.
         
         """
         
@@ -38,7 +39,8 @@ class PricePredictModel:
     def uber_train_test(self,Xuber_train,Yuber_train,Xuber_test,Yuber_test,result_uber):
         
         """
-
+        
+        Training Uber dataset and storing the r square value.
 
         """
         
@@ -63,6 +65,7 @@ class PricePredictModel:
         
         """
 
+        Training Lyft dataset and storing the r square value.
 
         """
         
