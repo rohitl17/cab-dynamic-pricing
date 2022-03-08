@@ -7,10 +7,7 @@ requests
 numpy
 openweathermap
 pandas
-pep8
-pip
 pytest
 setuptools
-scipy
 scikit-learn
 sklearn
