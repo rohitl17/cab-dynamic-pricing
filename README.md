@@ -1,4 +1,4 @@
-[![Build Status](https://app.travis-ci.com/rohitl17/cab-dynamic-pricing.svg?branch=main)](https://app.travis-ci.com/rohitl17/cab-dynamic-pricing) [![Coverage Status](https://coveralls.io/repos/github/rohitl17/cab-dynamic-pricing/badge.svg)](https://coveralls.io/github/rohitl17/cab-dynamic-pricing?branch=main) ![contributors](https://img.shields.io/github/contributors/rohitl17/cab-dynamic-pricing.svg) ![codesize](https://img.shields.io/github/languages/code-size/rohitl17/cab-dynamic-pricing.svg)
+[![Build Status](https://app.travis-ci.com/rohitl17/cab-dynamic-pricing.svg?branch=main)](https://app.travis-ci.com/rohitl17/cab-dynamic-pricing) [![Coverage Status](https://coveralls.io/repos/github/rohitl17/cab-dynamic-pricing/badge.svg?branch=main)](https://coveralls.io/github/rohitl17/cab-dynamic-pricing?branch=main) ![contributors](https://img.shields.io/github/contributors/rohitl17/cab-dynamic-pricing.svg) ![codesize](https://img.shields.io/github/languages/code-size/rohitl17/cab-dynamic-pricing.svg)
 
 ![logo file](/cab-dynamic-pricing/templates/logo.jpg)
 
