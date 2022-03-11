@@ -33,14 +33,12 @@ Required Flask application, Oauth, Session Management Initializations
 app = Flask(__name__, static_url_path='', static_folder='build',
             template_folder='templates')
 
-
 oauth = OAuth(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.needs_refresh_message = (u"Session timedout, please re-login")
 login_manager.needs_refresh_message_category = "info"
-
 
 '''
 Read credentials from the configuration file and add it to the app configuration
@@ -49,21 +47,20 @@ app.config['SECRET_KEY'] = config.google_oauth_credentials['secret_key']
 app.config['GOOGLE_CLIENT_ID'] = config.google_oauth_credentials['google_client_id']
 app.config['GOOGLE_CLIENT_SECRET'] = config.google_oauth_credentials['google_client_secret']
 
-
 '''
 Initialize Google oauth registration details,
 common for all the oauth configurations
 '''
-google = oauth.register( name = 'google',
-    client_id = app.config["GOOGLE_CLIENT_ID"],
-    client_secret = app.config["GOOGLE_CLIENT_SECRET"],
-    access_token_url = 'https://accounts.google.com/o/oauth2/token',
-    access_token_params = None,
-    authorize_url = 'https://accounts.google.com/o/oauth2/auth',
-    authorize_params = None,
-    api_base_url = 'https://www.googleapis.com/oauth2/v1/',
-    userinfo_endpoint = 'https://openidconnect.googleapis.com/v1/userinfo',
-    client_kwargs = {'scope': 'openid email profile'},)
+google = oauth.register(name='google',
+client_id=app.config["GOOGLE_CLIENT_ID"],
+client_secret = app.config["GOOGLE_CLIENT_SECRET"],
+access_token_url = 'https://accounts.google.com/o/oauth2/token',
+access_token_params = None,
+authorize_url = 'https://accounts.google.com/o/oauth2/auth',
+authorize_params = None,
+api_base_url = 'https://www.googleapis.com/oauth2/v1/',
+userinfo_endpoint = 'https://openidconnect.googleapis.com/v1/userinfo',
+client_kwargs = {'scope': 'openid email profile'},)
 
 
 @login_manager.user_loader
@@ -71,7 +68,6 @@ def loadUser(user_id):
     '''
     This is a functionality of the login_manager from flask_login. 
     The goal is return the loaded user in the current context
-    
     param: user_id: Unique ID string returned by the Google Oauth
     return: user: Object of user class, if user is old one, else returns None
     '''
@@ -84,7 +80,6 @@ def logout():
     '''
     This is a functionality of the login_manager from flask_login. Log the user out 
     from the application once the logout button is pressed or the seesion is timed out
-    
     param: none
     return: none (Redirects to the home page)
     '''
@@ -98,22 +93,18 @@ def beforeRequest():
     Setting logout time in case of inactivity
     param, return : None
     '''
-    
     session.permanent = True
     app.permanent_session_lifetime = timedelta(minutes=config.user['session_timeout'])
 
-    
+
 @app.route("/")
 def index():
     '''
     Homepage for the end user, which shows the google login button
     '''
-    
     if current_user.is_authenticated:
-        
         data={'name':current_user.name}
         return render_template('template_page2.html', data=data)
-            
     else:
         return render_template('login_index.html')
 
@@ -122,12 +113,10 @@ def index():
 def googleLogin():
     '''
     Google login route for authorizing using Oauth
-    
     param: none
     return: none (Redirect the context to the redirect URL in the Oauth 
     configuration on Google console)
     '''
-    
     google = oauth.create_client('google')
     redirected_url = url_for('googleAuthorize', _external=True)
     return google.authorize_redirect(redirected_url)
@@ -141,16 +130,13 @@ def googleAuthorize():
     user information is loaded in context, else new entry is created for 
     the user in the database. If the authentication fails, the user is 
     directed back to the login page.
-    
     param: none
     return: none (Redirect to the home page where the user enters the 
             information and gets cab price
     '''
-    
     google = oauth.create_client('google')
     token = google.authorize_access_token()
     user_info = google.get('userinfo').json()
-    print (user_info["id"], user_info['name'], user_info['email'])
     
     if user_info.get("verified_email"):
         unique_id = user_info["id"]
@@ -187,7 +173,6 @@ def getCabPrice():
     param: source, destination, cab_price
     return: json object for result
     '''
-    
     source = request.form.get('Source')
     destination = request.form.get('Destination')
     uber_cab_type = request.form.get('uber-cab-type')
@@ -204,7 +189,6 @@ def getCabPrice():
      
     # Lyft not available
     lyft_original_surge = 1.0
-    
     
     '''
     Surge price classification model Inference
