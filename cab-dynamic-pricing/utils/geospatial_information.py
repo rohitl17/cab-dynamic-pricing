@@ -27,7 +27,6 @@ class GeoSpatialData:
         self.geo_df['source_long'] = [locationA.longitude]
         self.geo_df['dest_lat'] = [locationB.latitude]
         self.geo_df['dest_long'] = [locationB.longitude]
-
         return self.geo_df
 
     def get_distance(self):
@@ -53,5 +52,4 @@ class GeoSpatialData:
                                        self.destination, mode='driving')
         duration_mins = result['rows'][0]['elements'][0]['duration']['text']
         duration = float(re.sub(r'\D+$', '', duration_mins))
-
         return duration
