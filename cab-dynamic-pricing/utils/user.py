@@ -12,9 +12,9 @@ class User(UserMixin):
     '''
     
     def __init__(self, id_, name, email):
-        self.id = id_
-        self.name = name
-        self.email = email
+        self.id=id_
+        self.name=name
+        self.email=email
 
     @staticmethod
     def get(user_id):
@@ -27,7 +27,8 @@ class User(UserMixin):
         user_information=pd.read_csv(users_csv_path)
         specific_user_details=user_information.loc[user_information['user_id']==user_id]
 
-        return User(specific_user_details['user_id'][0], specific_user_details['name'][0], specific_user_details['email'][0])
+        return User(specific_user_details['user_id'][0], specific_user_details['name'][0],
+                    specific_user_details['email'][0])
 
     @staticmethod
     def create(id_, name, email):

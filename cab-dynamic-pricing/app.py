@@ -5,9 +5,6 @@ and weather APIs are done from here. This script acts as an interface between
 the UI, the API calls and the machine learning models
 '''
 import pandas as pd
-
-import configuration_files.software_configuration as config
-
 from datetime import timedelta
 from flask import Flask, render_template, url_for, redirect, request, session
 from authlib.integrations.flask_client import OAuth
@@ -19,7 +16,7 @@ from flask_login import (
     logout_user,
 )
 
-
+import configuration_files.software_configuration as config
 from model_scripts.surge_classification_inference import SurgePriceClassifier
 from model_scripts.dynamic_pricing_regression_inference import CabPricePredictor
 from utils.geospatial_information import GeoSpatialData
@@ -30,22 +27,22 @@ from utils.user import User
 Required Flask application, Oauth, Session Management Initializations
 '''
 
-app = Flask(__name__, static_url_path='', static_folder='build',
-            template_folder='templates')
+app=Flask(__name__, static_url_path='', static_folder='build',
+          template_folder='templates')
 
-oauth = OAuth(app)
+oauth=OAuth(app)
 
-login_manager = LoginManager()
+login_manager=LoginManager()
 login_manager.init_app(app)
-login_manager.needs_refresh_message = (u"Session timedout, please re-login")
-login_manager.needs_refresh_message_category = "info"
+login_manager.needs_refresh_message=(u"Session timedout, please re-login")
+login_manager.needs_refresh_message_category="info"
 
 '''
 Read credentials from the configuration file and add it to the app configuration
 '''
-app.config['SECRET_KEY'] = config.google_oauth_credentials['secret_key']
-app.config['GOOGLE_CLIENT_ID'] = config.google_oauth_credentials['google_client_id']
-app.config['GOOGLE_CLIENT_SECRET'] = config.google_oauth_credentials['google_client_secret']
+app.config['SECRET_KEY']=config.google_oauth_credentials['secret_key']
+app.config['GOOGLE_CLIENT_ID']=config.google_oauth_credentials['google_client_id']
+app.config['GOOGLE_CLIENT_SECRET']=config.google_oauth_credentials['google_client_secret']
 
 '''
 Initialize Google oauth registration details,
@@ -93,8 +90,8 @@ def beforeRequest():
     Setting logout time in case of inactivity
     param, return : None
     '''
-    session.permanent = True
-    app.permanent_session_lifetime = timedelta(minutes=config.user['session_timeout'])
+    session.permanent=True
+    app.permanent_session_lifetime=timedelta(minutes=config.user['session_timeout'])
 
 
 @app.route("/")
@@ -117,8 +114,8 @@ def googleLogin():
     return: none (Redirect the context to the redirect URL in the Oauth 
     configuration on Google console)
     '''
-    google = oauth.create_client('google')
-    redirected_url = url_for('googleAuthorize', _external=True)
+    google=oauth.create_client('google')
+    redirected_url=url_for('googleAuthorize', _external=True)
     return google.authorize_redirect(redirected_url)
 
 
@@ -139,9 +136,9 @@ def googleAuthorize():
     user_info = google.get('userinfo').json()
     
     if user_info.get("verified_email"):
-        unique_id = user_info["id"]
-        user_email = user_info["email"]
-        user_name = user_info["name"]
+        unique_id=user_info["id"]
+        user_email=user_info["email"]
+        user_name=user_info["name"]
     else:
         return "User email not available or not verified by Google.", 400
         
@@ -205,10 +202,10 @@ def getCabPrice():
     cab_price_inference_df=pd.DataFrame({
     'source_lat':[geolocation_df['source_lat'][0]],
         'source_long':[geolocation_df['source_long'][0]] , 
-        'dest_lat': [geolocation_df['dest_lat'][0]], 
-        'dest_long': [geolocation_df['dest_long'][0]],
-        'distance': [distance],'surge_multiplier': [surge_multiplier],
-        'uber_cab_type':[uber_cab_type],'lyft_cab_type': [lyft_cab_type], 
+        'dest_lat':[geolocation_df['dest_lat'][0]], 
+        'dest_long':[geolocation_df['dest_long'][0]],
+        'distance':[distance],'surge_multiplier':[surge_multiplier],
+        'uber_cab_type':[uber_cab_type],'lyft_cab_type':[lyft_cab_type], 
         'uber_price':[uber_price], 'lyft_price':[lyft_price]
     })
     

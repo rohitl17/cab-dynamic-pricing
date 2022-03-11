@@ -4,34 +4,33 @@ import pickle
 class CabPricePredictor:
     def __init__(self, data_frame):
         """
-        
         Loading the passed dataframe and creating empty data frames for 
         Uber and Lyft.
-        
         """
         self.data_frame = data_frame
-        self.uber = pd.DataFrame()
-        self.lyft = pd.DataFrame()
-        self.uber_train = pd.DataFrame()
-        self.lyft_train = pd.DataFrame()
+        self.uber=pd.DataFrame()
+        self.lyft=pd.DataFrame()
+        self.uber_train=pd.DataFrame()
+        self.lyft_train=pd.DataFrame()
         
     def df_modification(self):   
         """
-        
         Splitting the columns in the dataframe into Uber and Lyft cab types.
-        
         """
-        uber_list = ['Black','Black SUV', 'UberPool', 'UberX', 'UberXL', 'WAV']
-        lyft_list = ['Lux','Lux Black', 'Lux Black XL', 'Lyft', 'Lyft XL', 'Shared']
+        
+        uber_list=['Black','Black SUV', 'UberPool', 'UberX', 'UberXL', 'WAV']
+        lyft_list=['Lux','Lux Black', 'Lux Black XL', 'Lyft', 'Lyft XL', 'Shared']
                 
-        self.uber = self.data_frame[['source_lat','source_long', 'dest_lat', 'dest_long','distance','surge_multiplier', 'uber_price']]
-        self.lyft = self.data_frame[['source_lat','source_long', 'dest_lat', 'dest_long','distance','surge_multiplier', 'lyft_price']]
+        self.uber=self.data_frame[['source_lat','source_long', 'dest_lat', 
+                           'dest_long','distance','surge_multiplier', 'uber_price']]
+        self.lyft=self.data_frame[['source_lat','source_long', 'dest_lat', 
+                           'dest_long','distance','surge_multiplier', 'lyft_price']]
                 
-        self.uber[['Black','Black SUV', 'UberPool', 'UberX', 'UberXL', 'WAV']] = 0
-        self.lyft[['Lux','Lux Black', 'Lux Black XL', 'Lyft', 'Lyft XL', 'Shared']] = 0
+        self.uber[['Black','Black SUV', 'UberPool', 'UberX', 'UberXL', 'WAV']]=0
+        self.lyft[['Lux','Lux Black', 'Lux Black XL', 'Lyft', 'Lyft XL', 'Shared']]=0
                 
-        uber_type = self.data_frame["uber_cab_type"].iloc[0]
-        lyft_type = self.data_frame["lyft_cab_type"].iloc[0]
+        uber_type=self.data_frame["uber_cab_type"].iloc[0]
+        lyft_type=self.data_frame["lyft_cab_type"].iloc[0]
         
         print (self.uber)
         for i in uber_list:
@@ -45,10 +44,9 @@ class CabPricePredictor:
         
     def get_uber_price(self):
         """
-        
         loading multi linear regression model for Uber to get the price.
-        
         """
+        
         filename = "model_weights/uber_mlr_model.sav"
         uber_mlr_model = pickle.load(open(filename, 'rb'))
         uber_price = uber_mlr_model.predict(self.uber.drop(columns=['uber_price']))
@@ -56,9 +54,7 @@ class CabPricePredictor:
         
     def get_lyft_price(self):
         """
-        
         loading multi linear regression model for Lyft to get the price.
-        
         """
         filename = "model_weights/lyft_mlr_model.sav"
         lyft_mlr_model = pickle.load(open(filename, 'rb'))
@@ -73,9 +69,7 @@ class CabPricePredictor:
         
     def df_append(self):
         """
-        
         Appending the training datasets with the current record.
-        
         """
         uber_ndf = pd.DataFrame()
         lyft_ndf = pd.DataFrame()
