@@ -1,6 +1,6 @@
 '''
-Script that handles the main functionality of the whole project. 
-All the API calls including Oauth authentication, google maps, uber, lyft 
+Script that handles the main functionality of the whole project.
+All the API calls including Oauth authentication, google maps, uber, lyft
 and weather APIs are done from here. This script acts as an interface between
 the UI, the API calls and the machine learning models
 '''
@@ -30,7 +30,8 @@ from utils.user import User
 Required Flask application, Oauth, Session Management Initializations
 '''
 
-app = Flask(__name__, static_url_path='', static_folder='build', template_folder='templates')
+app = Flask(__name__, static_url_path='', static_folder='build',
+            template_folder='templates')
 
 
 oauth = OAuth(app)
@@ -50,16 +51,18 @@ app.config['GOOGLE_CLIENT_SECRET'] = config.google_oauth_credentials['google_cli
 
 
 '''
-Initialize Google oauth registration details, common for all the oauth configurations
+Initialize Google oauth registration details,
+common for all the oauth configurations
 '''
-google = oauth.register( name = 'google', client_id = app.config["GOOGLE_CLIENT_ID"],
+google = oauth.register( name = 'google',
+    client_id = app.config["GOOGLE_CLIENT_ID"],
     client_secret = app.config["GOOGLE_CLIENT_SECRET"],
     access_token_url = 'https://accounts.google.com/o/oauth2/token',
     access_token_params = None,
     authorize_url = 'https://accounts.google.com/o/oauth2/auth',
     authorize_params = None,
     api_base_url = 'https://www.googleapis.com/oauth2/v1/',
-    userinfo_endpoint = 'https://openidconnect.googleapis.com/v1/userinfo',  
+    userinfo_endpoint = 'https://openidconnect.googleapis.com/v1/userinfo',
     client_kwargs = {'scope': 'openid email profile'},)
 
 
