@@ -135,7 +135,7 @@ def googleAuthorize():
             information and gets cab price
     '''
     google = oauth.create_client('google')
-    token = google.authorize_access_token()
+    #token = google.authorize_access_token()
     user_info = google.get('userinfo').json()
     
     if user_info.get("verified_email"):
@@ -151,12 +151,12 @@ def googleAuthorize():
         login_user(user)
     else:
         user=User(unique_id, user_name, user_email)
-        user_created = user.create(unique_id, user_name, user_email)
-        if user_created == False:
+        user_created=user.create(unique_id, user_name, user_email)
+        if user_created==False:
             return "User creation in the database failed"
     
     login_user(user)
-    print ("Google Login Successful")
+    print("Google Login Successful")
 
     return redirect(url_for("index"))
 
@@ -173,22 +173,19 @@ def getCabPrice():
     param: source, destination, cab_price
     return: json object for result
     '''
-    source = request.form.get('Source')
-    destination = request.form.get('Destination')
-    uber_cab_type = request.form.get('uber-cab-type')
-    lyft_cab_type = request.form.get('lyft-cab-type')
+    source=request.form.get('Source')
+    destination=request.form.get('Destination')
+    uber_cab_type=request.form.get('uber-cab-type')
+    lyft_cab_type=request.form.get('lyft-cab-type')
         
     geoloc=GeoSpatialData(source, destination)
     geolocation_df=geoloc.get_location()
     
-    distance = geoloc.get_distance()
-    estimated_time = geoloc.get_duration()
+    distance=geoloc.get_distance()
+    estimated_time=geoloc.get_duration()
     
-    # Call uber and lyft API
-    uber_original_surge=1.0
-     
-    # Lyft not available
-    lyft_original_surge = 1.0
+    uber_original_surge=1.0  #Uber not available    
+    lyft_original_surge=1.0 # Lyft not available
     
     '''
     Surge price classification model Inference
@@ -205,9 +202,9 @@ def getCabPrice():
     '''
     Cab Price Model inference
     '''
-    cab_price_inference_df = pd.DataFrame({
-    'source_lat': [geolocation_df['source_lat'][0]],
-        'source_long': [geolocation_df['source_long'][0]] , 
+    cab_price_inference_df=pd.DataFrame({
+    'source_lat':[geolocation_df['source_lat'][0]],
+        'source_long':[geolocation_df['source_long'][0]] , 
         'dest_lat': [geolocation_df['dest_lat'][0]], 
         'dest_long': [geolocation_df['dest_long'][0]],
         'distance': [distance],'surge_multiplier': [surge_multiplier],
@@ -224,6 +221,5 @@ def getCabPrice():
     return render_template('final_page.html', result=result)
 
 
-
-if __name__ == '__main__':
+if __name__=='__main__':
     app.run()
