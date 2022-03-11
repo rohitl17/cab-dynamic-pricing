@@ -1,13 +1,12 @@
 '''
-Script that handles the main functionality of the whole project. All the API calls including Oauth authentication, google maps, uber, lyft and weather APIs are done from here. This script acts as an interface between the UI, the API calls and the machine learning models
+Script that handles the main functionality of the whole project. 
+All the API calls including Oauth authentication, google maps, uber, lyft 
+and weather APIs are done from here. This script acts as an interface between
+the UI, the API calls and the machine learning models
 '''
-from flask import Flask
-import json
 import pandas as pd
 
 import configuration_files.software_configuration as config
-from utils.user import User
-from utils.weather_information import weather_information
 
 from datetime import timedelta
 from flask import Flask, render_template, url_for, redirect, request, session
@@ -25,14 +24,13 @@ from model_scripts.surge_classification_inference import SurgePriceClassifier
 from model_scripts.dynamic_pricing_regression_inference import CabPricePredictor
 from utils.geospatial_information import GeoSpatialData
 from utils.weather_information import weather_information
+from utils.user import User
 
 '''
 Required Flask application, Oauth, Session Management Initializations
 '''
 
-app = Flask(__name__, static_url_path='',
-                  static_folder='build',
-                  template_folder='templates')
+app = Flask(__name__, static_url_path='', static_folder='build', template_folder='templates')
 
 
 oauth = OAuth(app)
@@ -54,43 +52,39 @@ app.config['GOOGLE_CLIENT_SECRET'] = config.google_oauth_credentials['google_cli
 '''
 Initialize Google oauth registration details, common for all the oauth configurations
 '''
-google = oauth.register(
-    name = 'google',
-    client_id = app.config["GOOGLE_CLIENT_ID"],
+google = oauth.register( name = 'google', client_id = app.config["GOOGLE_CLIENT_ID"],
     client_secret = app.config["GOOGLE_CLIENT_SECRET"],
     access_token_url = 'https://accounts.google.com/o/oauth2/token',
     access_token_params = None,
     authorize_url = 'https://accounts.google.com/o/oauth2/auth',
     authorize_params = None,
     api_base_url = 'https://www.googleapis.com/oauth2/v1/',
-    userinfo_endpoint = 'https://openidconnect.googleapis.com/v1/userinfo',  # This is only needed if using openId to fetch user info
-    client_kwargs = {'scope': 'openid email profile'},
-)
+    userinfo_endpoint = 'https://openidconnect.googleapis.com/v1/userinfo',  
+    client_kwargs = {'scope': 'openid email profile'},)
 
 
 @login_manager.user_loader
 def loadUser(user_id):
     '''
-    This is a functionality of the login_manager from flask_login. The goal is return the loaded user in the current context
+    This is a functionality of the login_manager from flask_login. 
+    The goal is return the loaded user in the current context
     
     param: user_id: Unique ID string returned by the Google Oauth
     return: user: Object of user class, if user is old one, else returns None
     '''
-    
     return User.get(user_id)
-
 
 
 @app.route("/logout")
 @login_required
 def logout():    
     '''
-    This is a functionality of the login_manager from flask_login. Log the user out from the application once the logout button is pressed or the seesion is timed out
+    This is a functionality of the login_manager from flask_login. Log the user out 
+    from the application once the logout button is pressed or the seesion is timed out
     
     param: none
     return: none (Redirects to the home page)
     '''
-    
     logout_user()
     return redirect(url_for("index"))
 
@@ -127,7 +121,8 @@ def googleLogin():
     Google login route for authorizing using Oauth
     
     param: none
-    return: none (Redirect the context to the redirect URL in the Oauth configuration on Google console)
+    return: none (Redirect the context to the redirect URL in the Oauth 
+    configuration on Google console)
     '''
     
     google = oauth.create_client('google')
@@ -138,10 +133,15 @@ def googleLogin():
 @app.route('/login/google/authorize')
 def googleAuthorize():
     '''
-    Google authorization route. Gets the user information from Google once the user is authorized. If the user already exists in the database the user information is loaded in context, else new entry is created for the user in the database. If the authentication fails, the user is directed back to the login page.
+    Google authorization route. Gets the user information from Google once 
+    the user is authorized. If the user already exists in the database the
+    user information is loaded in context, else new entry is created for 
+    the user in the database. If the authentication fails, the user is 
+    directed back to the login page.
     
     param: none
-    return: none (Redirect to the home page where the user enters the information and gets cab price
+    return: none (Redirect to the home page where the user enters the 
+            information and gets cab price
     '''
     
     google = oauth.create_client('google')
@@ -175,7 +175,11 @@ def googleAuthorize():
 @app.route("/getCabPrice", methods=["GET","POST"])
 def getCabPrice():
     '''
-    This API handles the main business logic of the whole application. Calls the Google Maps API to get the latitude and longitude for source and destination. Calls the openweathermap API to get the weather details. Calls the model inference APIs for surge price classification and linear regression for calculating the dynamic price for uber and lyft APIs.
+    This API handles the main business logic of the whole application. 
+    Calls the Google Maps API to get the latitude and longitude for source
+    and destination. Calls the openweathermap API to get the weather details. 
+    Calls the model inference APIs for surge price classification and linear 
+    regression for calculating the dynamic price for uber and lyft APIs.
      
     param: source, destination, cab_price
     return: json object for result
@@ -202,24 +206,33 @@ def getCabPrice():
     '''
     Surge price classification model Inference
     '''
-    surge_inference_df=weather_information(geolocation_df['source_lat'][0], geolocation_df['source_long'][0])
+    surge_inference_df=weather_information(geolocation_df['source_lat'][0], 
+                                           geolocation_df['source_long'][0])
     surge_inference_df['surge_mult']=[(uber_original_surge+lyft_original_surge)/2]
     surge_calculator=SurgePriceClassifier(surge_inference_df)
     surge_multiplier=surge_calculator.surge_prediction_model()
     
-    uber_price=20
-    lyft_price=20
+    uber_price=20   #Dummy value for uber
+    lyft_price=20   #Dummy value for lyft
+    
     '''
     Cab Price Model inference
     '''
     cab_price_inference_df = pd.DataFrame({
-    'source_lat': [geolocation_df['source_lat'][0]],'source_long': [geolocation_df['source_long'][0]] , 'dest_lat': [geolocation_df['dest_lat'][0]], 'dest_long': [geolocation_df['dest_long'][0]],'distance': [distance],'surge_multiplier': [surge_multiplier],'uber_cab_type':[uber_cab_type],'lyft_cab_type': [lyft_cab_type], 'uber_price':[uber_price], 'lyft_price':[lyft_price]
+    'source_lat': [geolocation_df['source_lat'][0]],
+        'source_long': [geolocation_df['source_long'][0]] , 
+        'dest_lat': [geolocation_df['dest_lat'][0]], 
+        'dest_long': [geolocation_df['dest_long'][0]],
+        'distance': [distance],'surge_multiplier': [surge_multiplier],
+        'uber_cab_type':[uber_cab_type],'lyft_cab_type': [lyft_cab_type], 
+        'uber_price':[uber_price], 'lyft_price':[lyft_price]
     })
     
     cab_price_object=CabPricePredictor(cab_price_inference_df)
     uber_predicted_price, lyft_predicted_price=cab_price_object.cab_price_prediction()
     
-    result={'uber_price':uber_predicted_price, 'lyft_price':lyft_predicted_price, 'estimated_time': estimated_time, 'distance':round(distance*0.621371,2)}
+    result={'uber_price':uber_predicted_price, 'lyft_price':lyft_predicted_price, 
+            'estimated_time': estimated_time, 'distance':round(distance*0.621371,2)}
     
     return render_template('final_page.html', result=result)
 
