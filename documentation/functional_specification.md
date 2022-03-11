@@ -2,7 +2,7 @@
 
 
 ### Background  
-There are various companies working in the cab domain. Uber and Lyft being amongst the top of them. Users have to put in the location in each of the apps to get the optimal cost. Our ML-based solution incoroporating surge overcomes this by being a one-stop solution for comparing prices for different types of cabs. The surge calulation replicates Uber's microservice for surge calculation by taking into account the rush hours, weather changes and location. The dynamic pricing ML model uses the surge, distance, cab type source and destination location features to calculate the final price. Our goal is to suggest the user an appropriate cab type from Uber and Lyft as per their budgets and constraints.
+There are various companies working in the cab domain. Uber and Lyft being amongst the top of them. Users have to put in the location in each of the apps to get the optimal cost. Our ML-based solution incorporating surge overcomes this by being a one-stop solution for comparing prices for different types of cabs. The surge calculation replicates Uber's microservice for surge calculation by taking into account the rush hours, weather changes and location. The dynamic pricing ML model uses the surge, distance, cab type source and destination location features to calculate the final price. Our goal is to suggest the user an appropriate cab type from Uber and Lyft as per their budgets and constraints.
 
 
 ### User profile  
