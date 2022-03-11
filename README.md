@@ -3,7 +3,7 @@
 ![logo file](/cab-dynamic-pricing/templates/logo.jpg)
 
 ## Easy Cabs
-Easy Cabs helps you in getting the dynamic pricing of an Uber and Lyft. Input your source and destination and Easy Cabs will take into account your lattitude, longitufe, weather forecast and predict the surge pricing for your rides on both the apps. The end user can then make a decision on which cab would be the best for them in terms of cost and ETA.
+Easy Cabs helps you in getting the dynamic pricing of Uber and Lyft cabs. Input your source and destination and Easy Cabs will take into account your latitude, longitude, weather forecast and predict the surge pricing for your rides on both the apps. The end user can then make a decision on which cab would be the best for them in terms of cost and ETA.
 
 ## Background
 A web application for calculating the dynamic price of Uber and Lyft cabs depending on various attributes. 
