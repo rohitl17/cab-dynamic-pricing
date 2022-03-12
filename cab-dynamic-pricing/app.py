@@ -44,10 +44,10 @@ configuration
 app.config['SECRET_KEY'] = config.google_oauth_credentials['secret_key']
 
 app.config['GOOGLE_CLIENT_ID'] =\
-               config.google_oauth_credentials['google_client_id']
+    config.google_oauth_credentials['google_client_id']
 
 app.config['GOOGLE_CLIENT_SECRET'] =\
-               config.google_oauth_credentials['google_client_secret']
+    config.google_oauth_credentials['google_client_secret']
 
 '''
 Initialize Google oauth registration details,
@@ -142,7 +142,7 @@ def googleAuthorize():
 
     google = oauth.create_client('google')
 
-    # token = google.authorize_access_token()
+    token = google.authorize_access_token()
 
     user_info = google.get('userinfo').json()
 
@@ -199,11 +199,10 @@ def getCabPrice():
     Surge price classification model Inference
     '''
     surge_inference_df = weather_information(
-                                            geolocation_df['source_lat'][0],
-                                            geolocation_df['source_long'][0])
+        geolocation_df['source_lat'][0], geolocation_df['source_long'][0])
 
     surge_inference_df['surge_mult'] = \
-        [(uber_original_surge+lyft_original_surge)/2]
+        [(uber_original_surge + lyft_original_surge) / 2]
     surge_calculator = SurgePriceClassifier(surge_inference_df)
     surge_multiplier = surge_calculator.surge_prediction_model()
 
@@ -214,24 +213,25 @@ def getCabPrice():
     Cab Price Model inference
     '''
     cab_price_inference_df = pd.DataFrame({
-            'source_lat': [geolocation_df['source_lat'][0]],
-            'source_long': [geolocation_df['source_long'][0]],
-            'dest_lat': [geolocation_df['dest_lat'][0]],
-            'dest_long': [geolocation_df['dest_long'][0]],
-            'distance': [distance], 'surge_multiplier': [surge_multiplier],
-            'uber_cab_type': [uber_cab_type], 'lyft_cab_type': [lyft_cab_type],
-            'uber_price': [uber_price], 'lyft_price': [lyft_price]
-                            })
+        'source_lat': [geolocation_df['source_lat'][0]],
+        'source_long': [geolocation_df['source_long'][0]],
+        'dest_lat': [geolocation_df['dest_lat'][0]],
+        'dest_long': [geolocation_df['dest_long'][0]],
+        'distance': [distance], 'surge_multiplier': [surge_multiplier],
+        'uber_cab_type': [uber_cab_type], 'lyft_cab_type': [lyft_cab_type],
+        'uber_price': [uber_price], 'lyft_price': [lyft_price]})
 
     cab_price_object = CabPricePredictor(cab_price_inference_df)
     uber_predicted_price, lyft_predicted_price = \
         cab_price_object.cab_price_prediction()
 
+    kilometers_to_miles = 0.621371
+
     result = {
         'uber_price': uber_predicted_price,
         'lyft_price': lyft_predicted_price,
         'estimated_time': estimated_time,
-        'distance': round(distance*0.621371, 2)}
+        'distance': round(distance * kilometers_to_miles, 2)}
 
     return render_template('final_page.html', result=result)
 

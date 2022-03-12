@@ -51,6 +51,6 @@ class User(UserMixin):
             user_information = pd.concat([user_information, current_user])
             user_information.to_csv(users_csv_path, index=None)
             return True
-        except:
-            print("User creation failed")
-            return False
+        except BaseException as error:
+            print('An exception occurred while creating User\
+            CSV: {}'.format(error))

@@ -1,5 +1,6 @@
 import unittest
 
+
 class TestSoftwareConfiguration(unittest.TestCase):
     def test_software_configuration(self):
         '''
@@ -8,4 +9,4 @@ class TestSoftwareConfiguration(unittest.TestCase):
         -------
         None.
         '''
-        self.assertEqual(0,0)
+        self.assertEqual(0, 0)

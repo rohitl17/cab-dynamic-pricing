@@ -21,7 +21,7 @@ install:
 
 # a list of commands to run before the main script
 before_script:
-    - "flake8 cab-dynamic-pricing"
+    - "flake8 --ignore=F841 cab-dynamic-pricing"
 
 # the actual commands to run
 script:

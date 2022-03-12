@@ -69,8 +69,7 @@ class PricePredictModel:
         rsquared_value = r2_score(Yuber_test, Yuber_pred)
         result_uber['R^2 score'] = rsquared_value
 
-        result_uber.to_csv('./result/uber_price_mlr' +
-                           timestamp + '.csv')
+        result_uber.to_csv('./result/uber_price_mlr' + timestamp + '.csv')
 
     def lyft_train_test(self, Xlyft_train, Ylyft_train, Xlyft_test,
                         Ylyft_test, result_lyft):

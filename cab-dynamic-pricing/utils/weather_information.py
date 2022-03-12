@@ -11,11 +11,14 @@ def weather_information(latitude, longitude):
     return : weather object with all the required parameters
     '''
     api_key = config.weather_api_credentials['api_key']
-    url = "https://api.openweathermap.org/data/2.5/onecall\
-        ?lat=%s&lon=%s&appid=%s&units=metric" %\
-        (latitude, longitude, api_key)
+
+    url = "https://api.openweathermap.org/data/2.5/onecall?\
+lat=%s&lon=%s&appid=%s&units=metric"\
+    % (latitude, longitude, api_key)
+
     response = requests.get(url)
     response_data = json.loads(response.text)
+
     weather_model_parameters_dict =\
         {'location_latitude': latitude, 'location_longitude': longitude}
     weather_model_parameters_dict['temp'] =\

@@ -22,8 +22,7 @@ class SurgePriceClassifier:
         '''
         var_hour = datetime.now().hour
 
-        if ((var_hour >= 6 & var_hour < 10) |
-                (var_hour >= 15 & var_hour < 19)):
+        if (var_hour >= 6 & var_hour < 10) | (var_hour >= 15 & var_hour < 19):
             self.data_frame['rush_hour'] = [1]
         else:
             self.data_frame['rush_hour'] = [0]
