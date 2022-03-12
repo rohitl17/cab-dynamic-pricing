@@ -31,7 +31,7 @@ Making the Distance Matrix and Geocoding API call: Required Parameters: Source a
   iv) Click Create. The console navigates to the Dashboard page and your project is created within a few minutes.
 3) Go to the Google Maps Platform option using top-left button < Credentials. 
 4) On the Credentials page, click Create credentials > API key. Copy the API key to add to the software_configuration.py file.  
-5) Go to APIs & Services and ensure the Distance Matrix API and Geocoding API are enabled for future use.  
+5) Go to Dashboard > APIs & Services and verify that Distance Matrix API and Geocoding API are present in the list of enabled services in your account to ensure error free usage of these APIs.
 
 <br>
 ### 2) Google Oauth API key   
