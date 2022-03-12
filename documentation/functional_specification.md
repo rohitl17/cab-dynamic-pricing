@@ -2,7 +2,7 @@
 
 
 ### Background  
-There are various companies working in the cab domain. Uber and Lyft being amongst the top of them. Users have to put in the location in each of the apps to get the optimal cost. Our ML-based solution incorporating surge overcomes this by being a one-stop solution for comparing prices for different types of cabs. The surge calculation replicates Uber's microservice for surge calculation by taking into account the rush hours, weather changes and location. The dynamic pricing ML model uses the surge, distance, cab type source and destination location features to calculate the final price. Our goal is to suggest the user an appropriate cab type from Uber and Lyft as per their budgets and constraints.
+Uber and Lyft are the top companies working in the cabs domain. Users have to put in the location in each of the apps to get the optimal cost. Our ML-based solution incorporating surge overcomes this by being a one-stop solution for comparing prices for different types of cabs. The surge calculation tries to replicate Uber's microservice for pricing and surging calculation by taking into account the rush hours, weather changes and location. The dynamic pricing ML model uses the surge, distance, cab type source and destination location features to calculate the final price. Our goal is to suggest the user an appropriate cab type from Uber and Lyft as per their budget constraints and convenience.
 
 
 ### User profile  
@@ -13,10 +13,10 @@ There are various companies working in the cab domain. Uber and Lyft being among
 - [Data Set](https://www.kaggle.com/ravi72munde/uber-lyft-cab-prices) from Kaggle which has over 693000 records of data for weather and cab-rides. 
 
 
-### Use cases.   
+### Use cases   
 
 <ol>
-<li>Choosing a cab from Uber and Lyft as per cost
+<li>Choosing a cab from Uber and Lyft of similar types as per cost
   <ol>
     <li>USER: Enters source and destination.</li>
     <li>USER: Provides similar cab types for uber and lyft.</li>
@@ -27,7 +27,7 @@ There are various companies working in the cab domain. Uber and Lyft being among
 </li> 
   
   
-<li>Choosing a cab from Uber and Lyft as per convenience 
+<li>Choosing a cab from Uber and Lyft of different types as per cost and convenience 
   <ol>
     <li>USER: Enters source and destination.</li>
     <li>USER: Provides luxury or different cab types for uber and lyft.</li>
