@@ -6,7 +6,7 @@ Uber and Lyft are the top companies working in the cabs domain. Users have to pu
 
 
 ### User profile  
-- General Populace: People who want to compare and book cabs at optimal cost.
+- General Populace: People who want to compare Uber and Lyft cabs and book them at a optimal cost.
 
 
 ### Data sources
