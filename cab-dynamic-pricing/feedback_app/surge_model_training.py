@@ -15,15 +15,19 @@ class SurgePriceModel:
         training_surge_price_classifier_df.csv')
         self.testing_dataframe = pd.read_csv('./training_testing_data/\
         testing_surge_price_classifier_df.csv')
-        self.feature_train = self.training_dataframe[['temp', 'clouds',
-                                                      'pressure', 'rain',
-                                                      'humidity', 'wind', 'rush_hr',
-                                                      'date_day', 'location_latitude',
-                                                      'location_longitude']]
-        self.target_train = self.training_dataframe[['surge_mult']]
-        self.feature_test = self.testing_dataframe[['temp', 'clouds', 'pressure', 
-                                                    'rain', 'humidity', 'wind', 'rush_hr',
-                                                    'date_day', 'location_latitude', 'location_longitude']]
+        self.feature_train = \
+            self.training_dataframe[['temp', 'clouds',
+                                     'pressure', 'rain', 'humidity',
+                                     'wind', 'rush_hr', 'date_day',
+                                     'location_latitude',
+                                     'location_longitude']]
+        self.target_train = \
+            self.training_dataframe[['surge_mult']]
+        self.feature_test = \
+            self.testing_dataframe[['temp', 'clouds', 'pressure',
+                                    'rain', 'humidity', 'wind', 'rush_hr',
+                                    'date_day', 'location_latitude',
+                                    'location_longitude']]
         self.target_test = self.testing_dataframe[['surge_mult']]
         self.result_rf_model = pd.DataFrame()
 
@@ -33,13 +37,16 @@ class SurgePriceModel:
         Running the feature and target variables in a random forest
         classifier and appending the timestamp on the output
         '''
-        rf = RandomForestClassifier(n_estimators = 10, class_weight = 'balanced')
+        rf = RandomForestClassifier(n_estimators=10,
+                                    class_weight='balanced')
         rf.fit(feature_train, target_train)
         timestamp = datetime.now()
         result_rf_model['timestamp'] = timestamp
         filename = ('./model_dumps/surge_classification_rf_model'+timestamp)
         pickle.dump(rf, open(filename, 'wb'))
         loaded_model = pickle.load(open(filename, 'rb'))
-        result = loaded_model.score(feature_test, self.target_test)
+        result = loaded_model.score(feature_test,
+                                    self.target_test)
         result_rf_model['model_score'] = result
-        result_rf_model.to_csv('./result/surge_classification_rf_model'+timestamp+'.csv')
+        result_rf_model.to_csv('./result/surge_classification_rf_model' +
+                               timestamp + '.csv')
