@@ -2,12 +2,12 @@
 
 ### Component 1: (app)
 Call the the Google Oauth API for authentication  
-Input User's google email ID and password.  
+Input: User's Google email ID and password.  
 If login is successful, take the user to the next page else reload the home page
 
 
 ### Component 2: (getCabPrice)
-Input source, destination and type of cabs.  
+Input: Source, destination and type of cabs.  
 The component then calls the following subcomponents to get the required values:  
 1. Geospatial Data : Input: Source and Destination; Output: Latitude and Longitude, ETA and Distance. 
 2. Weathermap API: Input: Source Latitude and Longitude; Output: Required weather parameters. 
@@ -15,17 +15,17 @@ The component then calls the following subcomponents to get the required values:
 4. Lyft API: Input: source and destination, Output: dynamic Price and surge of the required cab <sup>*</sup>
 
 
-### Component 3: (surge_price_classification_inference)
-Input weather parameters obtained in getCabPrice Component 2. 
+### Component 3: (surge_inference)
+Input: Weather parameters obtained in getCabPrice Component 2. 
 Run the classification model to calculate surge. 
-Return (surge_price)
+Return: surge_price
 
-### Component 4: (dynamic_price_regression_inference)
-Input surge, distance, source and destination geospatial information   
+### Component 4: (dynamic_price_inference)
+Input: Surge, distance, source and destination geospatial information   
 Runs the data manipulation and the regression model to calculate dynamic price for uber and lyft individually. 
 Return (Price for Uber and Lyft selected cab prices)
 
-### Component 5: (report_generator)
+### Component 5: (result_generator)
 Input JSON for the output from previous steps to show the final user the report. 
 Creates a JSON and shows the output on a blank page with logout option or back button to try other combinations. 
 Output: Price , ETA and Distance estimates for the user
@@ -36,11 +36,11 @@ A cron job can be configured by the developer to run and save the results everyt
 Output: Retrained models for surge classification and dynamic pricing.
 
 ### Component 7 (database):
-This component is under development now. The developers plan to store the basic user information for storing user context for future logins. This database will also store updated model results and entries for feedback application.
+This component is under development now. The developers plan to store the basic user information for storing user context for future logins. This database will also store updated model results and entries for feedback application. It uses CSVs now.
 
 ### Components interaction
 1. User visits the home page. Signs in using google email ID. The backend for this authentication is handled by the component 1. In case of successful login, the user is directed to the Component 2.  
-2. For component 2, the user inputs the required source, destination and selects uber and lyft cab types from the dropdown. This then directs the context to the involved subcomponents to get the required information using the API keys.  
+2. For component 2, the user inputs the required source, destination and selects uber and lyft cab types from the dropdown. This then directs the context to the involved subcomponents to get the required information using the APIs.  
 3. Once the information is available, the component 3 is called and calulates the surge using the ML model.  
 4. The surge is sent to component 4 which calculates the dynamic price for the respective cab prices.  
 5. Once the price is calculated, the final report is generated as a JSON and sent to the reporting frontend which shows the output.  
@@ -51,4 +51,4 @@ The HTML file created by report_generator:
 ![image_api3](./screenshots/image_api3.png)
 
 <br>
-<sup>*</sup> Partial implementation as the tokens were not available from the Uber or Lyft's developer platforms.
+<sup>*</sup> Implementation in progress as the tokens were not available from the Uber or Lyft's developer platforms.
