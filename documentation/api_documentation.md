@@ -5,9 +5,10 @@
 - Google Oauth API
 - Openweathermap API  
   
-  
-### 1) Google Maps APIs  
 <br>
+
+### 1) Google Maps APIs  
+
 
 #### API relevance
 i) Distance Matrix API (from Google Maps): This API is used to access travel distance (in km) and time (in mins) for a matrix of origins and destinations.  
@@ -28,12 +29,13 @@ Making the Distance Matrix and Geocoding API call: Required Parameters: Source a
    Optional: To edit the Project ID, click Edit. The project ID can't be changed after the project is created, so choose an ID that meets your needs for the lifetime of the project.
  iii) In the Location field, click Browse to display potential locations for your project. Then, click Select.
   iv) Click Create. The console navigates to the Dashboard page and your project is created within a few minutes.
-3) Go to the Google Maps Platform option using top-left button.  
-5) On the Credentials page, click Create credentials > API key. Copy the API key to add to the software_configuration.py file.  
-6) Go to APIs & Services and ensure the Distance Matrix API and Geocoding API are enabled for future use.  
+3) Go to the Google Maps Platform option using top-left button < Credentials. 
+4) On the Credentials page, click Create credentials > API key. Copy the API key to add to the software_configuration.py file.  
+5) Go to APIs & Services and ensure the Distance Matrix API and Geocoding API are enabled for future use.  
 
-### 2) Google Oauth API key   
 <br>
+### 2) Google Oauth API key   
+
 
 #### API relevance
 Google APIs use the OAuth 2.0 protocol for authentication and authorization. Google supports common OAuth 2.0 scenarios such as those for web server, client-side, installed, and limited-input device applications.  
@@ -55,7 +57,7 @@ If the above keys are generated successfully, following is the screenshot from t
 <br>
 
 ### 3) Weather API (from OpenWeatherMap):   
-<br>
+
 
 #### API Relevance
 This API is used to access current weather (clouds, destination, humidity, pressure, and wind) data for any location.   
