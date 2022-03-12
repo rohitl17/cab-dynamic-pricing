@@ -111,11 +111,33 @@ Note: The data currently covers locations in Boston. Hence, to get relatively ac
 
 ## Installation
 
-Installing the package using the pip command:
+Method 1: Cloning the Github Repository:
+
+1. Clone the repo
+```bash
+git clone https://github.com/rohitl17/cab-dynamic-pricing.git
+```
+2. Create a virtual environment in the root of the repo
+```bash
+python -m venv venv
+source venv/bin/activate
+```
+If you're using Anaconda, create and activate a new conda environment. For conda run
+```
+conda create --name cabdynamicpricing
+conda activate cabdynamicpricing
+```
+3. Install the dependencies from the requirements.txt file using the below:
+```bash
+python -m pip install -r requirements.txt
+```
+
+Method 2: Installing the package using the pip command:
+1. Run the following command to install the application
 ```bash
 pip install cab-dynamic-pricing
 ```  
-Install the dependencies from the requirements.txt file using the below:
+2. Install the dependencies from the requirements.txt file using the below:
 ```bash
 python -m pip install -r requirements.txt
 ```
@@ -123,5 +145,4 @@ python -m pip install -r requirements.txt
 
 ## Usage and Output
 
-To see how to use the package to get the dynamic pricing of Uber and Lyft,   
-refer to the [example file](./example/example.md)
+To see how to use the package to get the dynamic pricing of Uber and Lyft, refer to the [example file](./example/example.md)
