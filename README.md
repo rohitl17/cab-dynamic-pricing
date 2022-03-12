@@ -3,18 +3,17 @@
 ![logo file](/cab-dynamic-pricing/templates/logo.jpg)
 
 ## Easy Cabs
-Easy Cabs helps you in getting the dynamic pricing of Uber and Lyft cabs. Input your source and destination and Easy Cabs will take into account your latitude, longitude, weather forecast and predict the surge pricing for your rides on both the apps. The end user can then make a decision on which cab would be the best for them in terms of cost and ETA.
-
+Easy Cabs is a ML-assisted web-based application which helps you in getting the dynamic pricing of Uber and Lyft cabs. The user enters the source and destination. Easy Cabs converts that to latitude, longitude, gets the weather information and predicts the estimated price for your rides using machine learning. The user can then make a decision on taking a cost-optimized cab.  
+ 
 ## Background
-A web application for calculating the dynamic price of Uber and Lyft cabs depending on various attributes. 
-Machine learning models are built to calculate the surge multiplier and the price of the cab between two different locations across the city of Boston.
-The user enters the source and destination along with the choice of cab for Uber and Lyft each and hit the "Calculate Price" button.  
-The user will be prompted with the cost of price for the particular cab for Uber and Lyft in USD, along with the ETA in minutes and distance in miles.  
+Uber and Lyft account for the major market capitalization for offering cab services on an app. But these prices are not constant like public transportation. They are greatly affected by the demand and supply of rides at a given time. So what exactly drives this demand? Some of the factors include weather changes, rush hours and location. EasyCabs takes into account these factors and tries to replicate a prototypical version of the pricing and surging microservices for these apps. It also offers an opportunity to retrain models using a feedback loop as a separate microservice.
+
 
 ## Authors
 - [Nayantara Mohan](https://github.com/nayantaramohan)  
 - [Rohit Lokwani](https://github.com/rohitl17)  
 - [Shubha Changappa Palachanda](https://github.com/shubha8196)
+
 
 ## Project Distribution
 
@@ -107,6 +106,9 @@ Features extracted from the dataset: -
   - time_stamp : start of the cab journey in epoch units.
   - wind : wind speed in miles per hour.
   
+Note: The data currently covers locations in Boston. Hence, to get relatively accurate estimates, the default models are bound to work the best for Boston locations.
+
+
 ## Installation
 
 Installing the package using the pip command:
@@ -117,6 +119,8 @@ Install the dependencies from the requirements.txt file using the below:
 ```bash
 python -m pip install -r requirements.txt
 ```
+
+
 ## Usage and Output
 
 To see how to use the package to get the dynamic pricing of Uber and Lyft,   
