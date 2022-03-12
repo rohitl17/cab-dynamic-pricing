@@ -20,10 +20,17 @@ Documentation: [Overview|Geocoding API|Google Developers](https://developers.goo
 Making the Distance Matrix and Geocoding API call: Required Parameters: Source address/Destination address and API key
 
 #### Key generation steps
-1) Create an account in Google Cloud Platform [Google Cloud Console](https://console.cloud.google.com/home/dashboard?project=rock-skyline-342820)  
-2) Go to the Google Maps Platform > Credentials page.  
-3) On the Credentials page, click Create credentials > API key.  
-4) Go to APIs & Services and ensure the Distance Matrix API and Geocoding API are enabled for future use.  
+1) Create an account in Google Cloud Platform [Google Cloud Console](https://console.cloud.google.com/)
+2) Create a new project:
+   Once your account is created, 
+   i) At the top-left, click Menu menu > IAM & Admin > Create a Project.
+  ii) In the Project Name field, enter a descriptive name for your project.
+   Optional: To edit the Project ID, click Edit. The project ID can't be changed after the project is created, so choose an ID that meets your needs for the lifetime of the project.
+ iii) In the Location field, click Browse to display potential locations for your project. Then, click Select.
+  iv) Click Create. The console navigates to the Dashboard page and your project is created within a few minutes.
+3) Go to the Google Maps Platform option using top-left button.  
+5) On the Credentials page, click Create credentials > API key. Copy the API key to add to the software_configuration.py file.  
+6) Go to APIs & Services and ensure the Distance Matrix API and Geocoding API are enabled for future use.  
 
 ### 2) Google Oauth API key   
 <br>
@@ -36,10 +43,10 @@ Documentation: [Using OAuth 2.0 to Access Google APIs](https://developers.google
 Pass the client ID, secret and access token obtained from google and add it to your application configuration. Call the relevant APIs.
 
 #### Key generation steps 
-1) Obtain OAuth 2.0 credentials from the Google API Console.  
-2) Obtain an access token from the Google Authorization Server.  
-3) Examine scopes of access granted by the user.  
-4) Send the access token to an API.  
+1) Using the top-left button, go to APIs & Services > Create Credentials > Oauth Client ID  
+![oauth_key_creation](./screenshots/oauth_key_creation.png)
+2) Copy the client ID and Secret or download the JSON and add it to the software_configuration.py file.
+ 
 <br>
 
 If the above keys are generated successfully, following is the screenshot from the Google Cloud console.
@@ -59,8 +66,9 @@ Required Parameters: Latitude, longitude, and API key
 Python Request URL : https://api.openweathermap.org/data/2.5/onecall?lat=%s&lon=%s&appid=%s&units=metric" % (lat, lon, api_key)  
 
 #### Key generation steps
-1) Create a API key in OpenWeatherMaps once you sign up [OpenWeathermap signup](https://home.openweathermap.org/users/sign_up)  
-2) Save the API key sent over to your signup email address.  
+1) Create a account on Openweathermap API [OpenWeathermap signup](https://home.openweathermap.org/users/sign_up)  
+2) Once the email is verified, click on your email/name on the top right > My API keys > Type "Name" > Generate.
+3) Copy the API key and add it to the JSON in the software_configuration.py file.
 
 If the above keys are generated successfully, following is the screenshot from the OpenWeatherMap console.
 ![image_api2](./screenshots/image_api2.png)  
