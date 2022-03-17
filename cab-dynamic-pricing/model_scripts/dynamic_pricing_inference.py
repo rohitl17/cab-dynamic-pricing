@@ -7,6 +7,8 @@ class CabPricePredictor:
         '''
         Loading the passed dataframe and creating empty
         data frames for Uber and Lyft.
+        params: dataframe for prediction
+        return: none
         '''
         self.data_frame = data_frame
         self.uber = pd.DataFrame()
@@ -18,6 +20,7 @@ class CabPricePredictor:
         '''
         Splitting the columns in the dataframe into
         Uber and Lyft cab types.
+        params, return: none
         '''
         uber_list = ['Black', 'Black SUV', 'UberPool', 'UberX',
                      'UberXL', 'WAV']
@@ -47,6 +50,8 @@ class CabPricePredictor:
     def get_uber_price(self):
         """
         loading multi linear regression model for Uber to get the price.
+        params: none
+        return: uber price
         """
         filename = "model_weights/uber_mlr_model.sav"
         uber_mlr_model = pickle.load(open(filename, 'rb'))
@@ -57,6 +62,8 @@ class CabPricePredictor:
     def get_lyft_price(self):
         """
         loading multi linear regression model for Lyft to get the price.
+        params: none
+        return: lyft price
         """
         filename = "model_weights/lyft_mlr_model.sav"
         lyft_mlr_model = pickle.load(open(filename, 'rb'))
@@ -65,6 +72,11 @@ class CabPricePredictor:
         return lyft_price
 
     def cab_price_prediction(self):
+        """
+        Price prediction function called by the aggregator
+        params: none
+        return: uber_price, lyft_price
+        """
         self.df_modification()
         uber_price = self.get_uber_price()
         lyft_price = self.get_lyft_price()
@@ -73,6 +85,7 @@ class CabPricePredictor:
     def df_append(self):
         """
         Appending the training datasets with the current record.
+        params, return: none
         """
         uber_ndf = pd.DataFrame()
         lyft_ndf = pd.DataFrame()

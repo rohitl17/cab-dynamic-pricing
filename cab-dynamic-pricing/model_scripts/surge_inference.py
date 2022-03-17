@@ -9,6 +9,8 @@ class SurgePriceClassifier:
         '''
         Loading the dataframe and coverting the commonly used
         surge price multipliers into categorical variables.
+        params: input dataframe
+        return: none
         '''
         self.data_frame = data_frame
         self.predictive_surge_mapping = {1: 1, 2: 1.25, 3: 1.5, 4: 1.75, 5: 2}
@@ -19,6 +21,7 @@ class SurgePriceClassifier:
         if the particular hour classifies as being a rush hour or not.
         This is used as a parameter in deducing the surge price
         multiplier.
+        params, return: none
         '''
         var_hour = datetime.now().hour
 
@@ -31,6 +34,8 @@ class SurgePriceClassifier:
         '''
         loading the surge price classification model using Python
         pickle load.
+        params: none
+        return: surge multiplier
         '''
         self.get_rush_hour()
         filename = "model_weights/surge_classification_rf_model.sav"
@@ -42,6 +47,7 @@ class SurgePriceClassifier:
     def df_append(self):
         '''
         Appending the existing training datasets with the current record.
+        params, return: none
         '''
         model_train = pd.read_csv("../feedback_app/training_testing_data/\
         training_surge_price_classifier_df.csv")
