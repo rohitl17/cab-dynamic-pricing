@@ -28,7 +28,7 @@ lat=%s&lon=%s&appid=%s&units=metric"\
     weather_model_parameters_dict['pressure'] =\
         response_data['current']['pressure']
     weather_model_parameters_dict['rain'] =\
-        response_data['minutely'][-1]['precipitation']
+        response_data['daily'][-1]['rain']
     weather_model_parameters_dict['humidity'] =\
         response_data['current']['humidity']
     weather_model_parameters_dict['wind'] =\

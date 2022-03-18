@@ -117,16 +117,18 @@ Method 1: Cloning the Github Repository:
 ```bash
 git clone https://github.com/rohitl17/cab-dynamic-pricing.git
 ```
-2. Create a virtual environment in the root of the repo
+2. If you're using Anaconda, create and activate a new conda environment. For conda run
+```
+conda create -n cabdynamicpricing python=3.9
+conda activate cabdynamicpricing
+```
+
+If you do not have anaconda, create a virtual environment in the root of the repo
 ```bash
 python -m venv venv
 source venv/bin/activate
 ```
-If you're using Anaconda, create and activate a new conda environment. For conda run
-```
-conda create --name cabdynamicpricing
-conda activate cabdynamicpricing
-```
+
 3. Install the dependencies from the requirements.txt file using the below:
 ```bash
 python -m pip install -r requirements.txt
