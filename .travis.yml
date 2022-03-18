@@ -31,7 +31,7 @@ script:
 # generate a coverage report to send to back to user
 # We have written and run tests for all the working pricing inference code in the repository. Some of the files are placeholder 
 # test files for feedback app which is in progress. It is important to note APIs aren't tested using unittest because of API key security, 
-# hence the app.py has a low coverage. We try to test the interface of API in test files to validate actual modules.
+# hence the app.py has a low coverage. We've tested the interface of API in test files to validate actual modules.
 after_success:
     - cd cab-dynamic-pricing
     - coverage run --source=app,model_scripts,configuration_files,tests -m unittest discover tests/
