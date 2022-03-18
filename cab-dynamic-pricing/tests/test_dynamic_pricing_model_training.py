@@ -3,6 +3,7 @@ import pandas as pd
 from sklearn import linear_model
 from sklearn.metrics import r2_score
 
+
 class TestPricePredictModel(unittest.TestCase):
     '''
     Tests for the modules and models in the dynamic pricing
