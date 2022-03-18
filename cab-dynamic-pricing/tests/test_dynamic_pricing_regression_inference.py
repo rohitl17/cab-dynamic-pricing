@@ -1,8 +1,9 @@
 import unittest
 import pandas as pd
+from model_scripts.dynamic_pricing_inference import CabPricePredictor
 
 
-class CabPricePredictor(unittest.TestCase):
+class TestCabPricePredictor(unittest.TestCase):
     '''
     Tests the modules and inference calls in the dynamic pricing script
     '''
@@ -45,3 +46,28 @@ class CabPricePredictor(unittest.TestCase):
 
         message = "NaN values present in distance"
         self.assertIsNotNone(lyft['distance'], message)
+
+    def test_cab_price_predict(self):
+        '''
+        Tests if the the cab dynamic price is not a Nan value
+        params, returns: None
+        '''
+        cab_price_inference_df = pd.DataFrame({'source_lat': [42.3600825],
+                                               'source_long': [-71.0588801],
+                                               'dest_lat': [42.3518662],
+                                               'dest_long': [-71.0642623],
+                                               'distance': [1.0],
+                                               'surge_multiplier': [1.0],
+                                               'uber_cab_type': ['Black'],
+                                               'lyft_cab_type': ['Lux'],
+                                               'uber_price': [20.0],
+                                               'lyft_price': [20.0]})
+
+        cab_price_object = CabPricePredictor(cab_price_inference_df)
+        uber_predicted_price, lyft_predicted_price = \
+            cab_price_object.cab_price_prediction()
+
+        message = "Uber predicted price is not correct"
+        self.assertIsNotNone(uber_predicted_price, message)
+        message = "Lyft predicted price is not correct"
+        self.assertIsNotNone(lyft_predicted_price, message)

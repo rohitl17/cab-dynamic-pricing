@@ -38,7 +38,7 @@ class CabPricePredictor:
                    'Shared']] = 0
         uber_type = self.data_frame["uber_cab_type"].iloc[0]
         lyft_type = self.data_frame["lyft_cab_type"].iloc[0]
-        print(self.uber)
+
         for i in uber_list:
             if uber_type == i:
                 self.uber[i] = self.uber[i].replace(0, 1)
@@ -80,6 +80,7 @@ class CabPricePredictor:
         self.df_modification()
         uber_price = self.get_uber_price()
         lyft_price = self.get_lyft_price()
+
         return (round(uber_price[0], 2), round(lyft_price[0], 2))
 
     def df_append(self):

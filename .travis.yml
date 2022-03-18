@@ -30,7 +30,7 @@ script:
 
 # generate a coverage report to send to back to user
 after_success:
-    - cd cab-dynamic-pricing/tests/
-    - coverage run -m unittest discover
+    - cd cab-dynamic-pricing/cab-dynamic-pricing
+    - coverage run --source=model_scripts,feedback_app,tests -m unittest discover tests/
     - coverage report -m
     - coveralls

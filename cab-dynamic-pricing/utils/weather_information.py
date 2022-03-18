@@ -27,13 +27,18 @@ lat=%s&lon=%s&appid=%s&units=metric"\
         response_data['current']['clouds']
     weather_model_parameters_dict['pressure'] =\
         response_data['current']['pressure']
-    weather_model_parameters_dict['rain'] =\
-        response_data['daily'][-1]['rain']
     weather_model_parameters_dict['humidity'] =\
         response_data['current']['humidity']
     weather_model_parameters_dict['wind'] =\
         response_data['current']['wind_speed']
     weather_model_parameters_dict['id'] = 0
+
+    if 'rain' in response_data['daily'][-1]:
+        weather_model_parameters_dict['rain'] =\
+            response_data['daily'][-1]['rain']
+    else:
+        weather_model_parameters_dict['rain'] = 0
+
     current_weather_df = pd.DataFrame.from_dict(weather_model_parameters_dict,
                                                 orient='index')
     current_weather_df = current_weather_df.transpose()

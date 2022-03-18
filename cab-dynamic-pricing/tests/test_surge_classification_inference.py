@@ -1,6 +1,7 @@
 import unittest
 import pandas as pd
 import numpy as np
+from model_scripts.surge_inference import SurgePriceClassifier
 
 
 class TestSurgePriceClassifier(unittest.TestCase):
@@ -57,3 +58,19 @@ class TestSurgePriceClassifier(unittest.TestCase):
                           'location_longitude': [-71.0549768],
                           'surge_mult': [0]})
         self.assertEqual(len(data), len(data.dropna()))
+
+    def test_surge_model(self):
+        data = \
+            pd.DataFrame({'id': [0], 'temp': [40.67], 'clouds': [0.94],
+                          'pressure': [1013.76], 'rain': [0.0],
+                          'humidity': [0.92], 'wind': [2.92],
+                          'location_latitude': [42.3559219],
+                          'location_longitude': [-71.0549768],
+                          'surge_mult': [0]})
+
+        surge_mult_object = SurgePriceClassifier(data)
+        surge = \
+            surge_mult_object.surge_prediction_model()
+
+        message = "Predicted surge is not correct"
+        self.assertIsNotNone(surge, message)
