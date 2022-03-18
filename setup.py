@@ -8,11 +8,13 @@ setuptools.setup(
     version="1.0.0",
     author=["Nayantara Mohan", "Rohit Lokwani", "Shubha Changappa Palachanda"],
     author_email="rlokwani@uw.edu",
-    description="A web application for calculating dynamic price of Uber and Lyft cabs depending on various parameters",
+    description="A web application for calculating dynamic \
+                 price of Uber and Lyft cabs depending on various parameters",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/rohitl17/cab-dynamic-pricing",
-    packages=setuptools.find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
+    packages=setuptools.find_packages(exclude=["*.tests", "*.tests.*",
+                                      "tests.*", "tests"]),
     include_package_data=True,
     license="MIT",
     classifiers=[
@@ -21,4 +23,3 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
 )
-

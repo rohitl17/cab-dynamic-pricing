@@ -1,6 +1,5 @@
 import unittest
 import pandas as pd
-from app import loadUser
 
 
 class TestUserModule(unittest.TestCase):
@@ -18,9 +17,3 @@ class TestUserModule(unittest.TestCase):
         self.assertEqual(type(data['user_id'][0]), str)
         self.assertIsNotNone(data)
         self.assertEqual(len(data.dropna()), len(data))
-
-        data = loadUser("116296017614486242589")
-        self.assertIsNotNone(data)
-
-        data = loadUser("116296017614486242590")
-        self.assertIsNone(data)
