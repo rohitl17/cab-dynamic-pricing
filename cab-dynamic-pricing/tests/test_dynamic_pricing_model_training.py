@@ -2,7 +2,7 @@ import unittest
 import pandas as pd
 from sklearn import linear_model
 from sklearn.metrics import r2_score
-from cab-dynamic-pricing.cab-dynamic-pricing.feedback_app import dynamic_pricing_model_training as dpmt 
+from cab-dynamic-pricing.feedback_app import dynamic_pricing_model_training as dpmt 
 
 class TestPricePredictModel(unittest.TestCase):
     '''
