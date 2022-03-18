@@ -192,8 +192,8 @@ def getCabPrice():
     distance = geoloc.get_distance()
     estimated_time = geoloc.get_duration()
 
-    uber_original_surge = 1.0   # Uber not available
-    lyft_original_surge = 1.0   # Lyft not available
+    uber_original_surge = 1.0   # Dummy surge value for feedback
+    lyft_original_surge = 1.0   # Dummy surge value for feedback
 
     '''
     Surge price classification model Inference
@@ -206,8 +206,8 @@ def getCabPrice():
     surge_calculator = SurgePriceClassifier(surge_inference_df)
     surge_multiplier = surge_calculator.surge_prediction_model()
 
-    uber_price = 20   # Dummy value for uber
-    lyft_price = 20   # Dummy value for lyft
+    uber_price = 20   # Dummy dynamic price for feedback
+    lyft_price = 20   # Dummy dynamic price for feedback
 
     '''
     Cab Price Model inference

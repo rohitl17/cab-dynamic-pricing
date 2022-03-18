@@ -5,8 +5,15 @@ from sklearn.metrics import r2_score
 
 
 class TestPricePredictModel(unittest.TestCase):
-
+    '''
+    Tests for the modules and models in the dynamic pricing
+    training script for fedback loop
+    '''
     def test_uber_traindata(self):
+        '''
+        Tests the training input to uber dynamic pricing training model
+        params, returns: None
+        '''
         uber_train = \
             pd.DataFrame({'source_lat': [42.3600825],
                           'source_long': [-71.0588801],
@@ -21,6 +28,10 @@ class TestPricePredictModel(unittest.TestCase):
         self.assertEqual(len(uber_train.columns), 12)
 
     def test_lyft_traindata(self):
+        '''
+        Tests the training input to lyft dynamic pricing inference model
+        params, returns: None
+        '''
         lyft_train = \
             pd.DataFrame({'source_lat': [42.3600825],
                           'source_long': [-71.0588801],
@@ -35,6 +46,10 @@ class TestPricePredictModel(unittest.TestCase):
         self.assertEqual(len(lyft_train.columns), 13)
 
     def test_uber_testdata(self):
+        '''
+        Tests the validation data of uber dynamic pricing inference model
+        params, returns: None
+        '''
         uber_test = \
             pd.DataFrame({'source_lat': [42.3600825],
                           'source_long': [-71.0588801],
@@ -49,6 +64,10 @@ class TestPricePredictModel(unittest.TestCase):
         self.assertEqual(len(uber_test.columns), 12)
 
     def test_lyft_testdata(self):
+        '''
+        Tests the validation data of lyft dynamic pricing inference model
+        params, returns: None
+        '''
         lyft_test = \
             pd.DataFrame({'source_lat': [42.3600825],
                           'source_long': [-71.0588801],
@@ -63,6 +82,10 @@ class TestPricePredictModel(unittest.TestCase):
         self.assertEqual(len(lyft_test.columns), 13)
 
     def test_uber_training(self):
+        '''
+        Tests the training module of uber dynamic pricing inference model
+        params, returns: None
+        '''
         uber_train = \
             pd.DataFrame({'source_lat': [42.3600825],
                           'source_long': [-71.0588801],

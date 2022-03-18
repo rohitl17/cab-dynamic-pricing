@@ -4,6 +4,10 @@ import re
 
 class TestGeoInfo(unittest.TestCase):
     def test_location(self):
+        '''
+        Tests the output(distance) of geospatial API call
+        params, returns: None
+        '''
         result = {'destination_addresses': ['University District, \
         Seattle, WA, USA'],
                   'origin_addresses': ['Seattle, WA 98195, USA'],
@@ -17,6 +21,10 @@ class TestGeoInfo(unittest.TestCase):
         self.assertEqual(distance, 0.6)
 
     def test_duration(self):
+        '''
+        Tests the output(ETA) of geospatial API call
+        params, returns: None
+        '''
         result = {'destination_addresses': ['University District,\
         Seattle, WA, USA'],
                   'origin_addresses': ['Seattle, WA 98195, USA'],

@@ -5,9 +5,14 @@ from sklearn.ensemble import RandomForestClassifier
 
 
 class TestSurgePriceModel(unittest.TestCase):
-
+    '''
+    Test the training script for surge price model for feedback app
+    '''
     def test_training_surge_classifier(self):
-
+        '''
+        Tests the training input to surge training model
+        params, returns: None
+        '''
         data = \
             pd.DataFrame({'temp': [40.67], 'clouds': [0.94],
                           'pressure': [1013.76], 'rain': [0.0],
@@ -20,7 +25,10 @@ class TestSurgePriceModel(unittest.TestCase):
         self.assertEqual(len(data.columns), 10, message)
 
     def test_unique_values(self):
-
+        '''
+        Test for dropping duplicate values in feedback loop
+        params, returns: None
+        '''
         data = \
             pd.DataFrame({'temp': [40.67], 'clouds': [0.94],
                           'pressure': [1013.76], 'rain': [0.0],
@@ -34,7 +42,10 @@ class TestSurgePriceModel(unittest.TestCase):
                          1, message)
 
     def test_null_values(self):
-
+        '''
+        Test for dropping null values in feedback loop
+        params, returns: None
+        '''
         data = \
             pd.DataFrame({'temp': [40.67], 'clouds': [0.94],
                           'pressure': [1013.76], 'rain': [0.0],
@@ -46,7 +57,10 @@ class TestSurgePriceModel(unittest.TestCase):
         self.assertEqual(len(data), len(data.dropna()))
 
     def test_training_data(self):
-
+        '''
+        Test for validating inputs and outputs in feedback loop
+        params, returns: None
+        '''
         data = \
             pd.DataFrame({'temp': [40.67], 'clouds': [0.94],
                           'pressure': [1013.76], 'rain': [0.0],
@@ -65,7 +79,10 @@ class TestSurgePriceModel(unittest.TestCase):
                          len(target_train), message)
 
     def test_training_model(self):
-
+        '''
+        Test for model training success in feedback loop
+        params, returns: None
+        '''
         data = \
             pd.DataFrame({'temp': [40.67], 'clouds': [0.94],
                           'pressure': [1013.76], 'rain': [0.0],

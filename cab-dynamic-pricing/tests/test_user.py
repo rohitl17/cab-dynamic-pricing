@@ -2,9 +2,16 @@ import unittest
 import pandas as pd
 
 
-class TestApp(unittest.TestCase):
-
-    def test_training_usercsv(self):
+class TestUserModule(unittest.TestCase):
+    '''
+    Test the user creation and retrieval modules
+    '''
+    def test_user_database(self):
+        '''
+        Tests the user database for null values, datatypes
+        and column entries
+        params, return: None
+        '''
         data = pd.read_csv('../database/users.csv')
         self.assertEqual(len(data.columns), 3)
         self.assertEqual(type(data['user_id'][0]), str)

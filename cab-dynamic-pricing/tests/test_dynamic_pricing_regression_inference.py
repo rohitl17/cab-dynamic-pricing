@@ -3,8 +3,14 @@ import pandas as pd
 
 
 class CabPricePredictor(unittest.TestCase):
-
+    '''
+    Tests the modules and inference calls in the dynamic pricing script
+    '''
     def test_check_price(self):
+        '''
+        Tests if the uber dynamic pricing returns a value
+        params, returns: None
+        '''
         uber = \
             pd.DataFrame({'source_lat': [42.3600825],
                           'source_long': [-71.0588801],
@@ -21,6 +27,10 @@ class CabPricePredictor(unittest.TestCase):
         self.assertIsNotNone(uber['uber_price'], message)
 
     def test_check_input(self):
+        '''
+        Tests if the uber dynamic pricing has required inputs
+        params, returns: None
+        '''
         lyft = \
             pd.DataFrame({'source_lat': [42.3600825],
                           'source_long': [-71.0588801],
