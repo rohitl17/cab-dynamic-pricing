@@ -80,27 +80,14 @@ class CabPricePredictor:
         self.df_modification()
         uber_price = self.get_uber_price()
         lyft_price = self.get_lyft_price()
+        self.df_append()
 
         return (round(uber_price[0], 2), round(lyft_price[0], 2))
 
     def df_append(self):
         """
         Appending the training datasets with the current record.
+        Implementation in progress.
         params, return: none
         """
-        uber_ndf = pd.DataFrame()
-        lyft_ndf = pd.DataFrame()
-        uber_train = pd.DataFrame()
-        lyft_train = pd.DataFrame()
-        uber_train = \
-            pd.read_csv("feedback_app/training_testing_data/\
-            uber_train_mlr.csv")
-        uber_ndf = pd.concat([uber_train, self.uber], axis=0)
-        uber_ndf.to_csv("feedback_app/training_testing_data/\
-            uber_train_mlr.csv")
-        lyft_train = \
-            pd.read_csv("feedback_app/training_testing_data/\
-            lyft_train_mlr.csv")
-        lyft_ndf = pd.concat([lyft_train, self.lyft], axis=0)
-        lyft_ndf.to_csv("feedback_app/training_testing_data/\
-            lyft_train_mlr.csv")
+        return True

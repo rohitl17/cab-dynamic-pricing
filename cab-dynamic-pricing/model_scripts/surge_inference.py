@@ -1,4 +1,3 @@
-import pandas as pd
 import pickle
 
 from datetime import datetime
@@ -40,6 +39,7 @@ class SurgePriceClassifier:
         self.get_rush_hour()
         filename = "model_weights/surge_classification_rf_model.sav"
         loaded_model = pickle.load(open(filename, 'rb'))
+        self.df_append()
         self.data_frame = self.data_frame.drop(columns=['id', 'surge_mult'])
         result = loaded_model.predict(self.data_frame)
         return self.predictive_surge_mapping[int(result)]
@@ -47,10 +47,7 @@ class SurgePriceClassifier:
     def df_append(self):
         '''
         Appending the existing training datasets with the current record.
+        Implementation in progress.
         params, return: none
         '''
-        model_train = pd.read_csv("../feedback_app/training_testing_data/\
-        training_surge_price_classifier_df.csv")
-        new_df = pd.concat([self.dataframe, model_train], axis=0)
-        new_df.to_csv("../feedback_app/training_testing_data/\
-        training_surge_price_classifier_df.csv")
+        return True

@@ -1,4 +1,5 @@
 import unittest
+from configuration_files import software_configuration_format as cfg
 
 
 class TestSoftwareConfiguration(unittest.TestCase):
@@ -19,3 +20,15 @@ class TestSoftwareConfiguration(unittest.TestCase):
         self.assertEqual(len(google_oauth_credentials.keys()), 3)
         self.assertEqual(len(weather_api_credentials.keys()), 1)
         self.assertEqual(len(google_maps_api.keys()), 1)
+
+    def test_configuration_file(self):
+        '''
+        Tests the format of software configuration file
+        params, returns: None
+        '''
+        self.assertEqual(len(cfg.google_oauth_credentials.keys()), 3)
+        self.assertEqual(len(cfg.weather_api_credentials.keys()), 1)
+        self.assertEqual(len(cfg.google_maps_api.keys()), 1)
+        self.assertEqual(len(cfg.database_credentials), 0)
+        self.assertEqual(len(cfg.lyft_api.keys()), 3)
+        self.assertEqual(len(cfg.uber_api.keys()), 3)
