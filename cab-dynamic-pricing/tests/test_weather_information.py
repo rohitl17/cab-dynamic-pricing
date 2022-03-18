@@ -2,7 +2,6 @@ import unittest
 import pandas as pd
 
 
-
 class TestWeatherAPI(unittest.TestCase):
     '''
     Tests the Openweathermap API call module
@@ -21,4 +20,3 @@ class TestWeatherAPI(unittest.TestCase):
                           'location_longitude': [-71.0549768]})
         message = "ERROR : weather API is failing"
         self.assertEqual(len(data.columns), 9, message)
-

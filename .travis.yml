@@ -20,6 +20,7 @@ install:
 
 
 # a list of commands to run before the main script
+#Since the feedback loop is in development some variables are assigned but not used, ignoring F841, which highlights them
 before_script:
     - "flake8 --ignore=F841 cab-dynamic-pricing"
 

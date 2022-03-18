@@ -25,7 +25,7 @@ class TestApp(unittest.TestCase):
         dist_km = result['rows'][0]['elements'][0]['distance']['text']
         distance = float(re.sub(r'\D+$', '', dist_km))
         self.assertEqual(distance, 0.6)
-  
+
     def test_weather_api(self):
         '''
         Tests the output of the weather API
@@ -42,7 +42,7 @@ class TestApp(unittest.TestCase):
         message = "ERROR : test_unique_values is failing"
         self.assertEqual(len(list(np.unique(data['surge_mult']))),
                          1, message)
-        
+
     def test_surge_model_inference_input(self):
         '''
         Tests the input to the surge classifier model
@@ -57,8 +57,8 @@ class TestApp(unittest.TestCase):
                           'location_longitude': [-71.0549768],
                           'surge_mult': [0]})
         message = "ERROR : test_training_surge_classifier is failing"
-        self.assertEqual(len(data.columns), 10, message)    
-        
+        self.assertEqual(len(data.columns), 10, message)
+
     def test_surge_model_inference(self):
         '''
         Tests if the surge model inference model is loaded
@@ -83,7 +83,7 @@ class TestApp(unittest.TestCase):
         rf.fit(feature_train, target_train)
         message = ("ERROR : Model not found")
         self.assertIsNotNone(rf, message)
-    
+
     def test_uber_dynamicprice_inference(self):
         '''
         Tests the input to uber dynamic pricing inference model
@@ -119,7 +119,7 @@ class TestApp(unittest.TestCase):
                           'Lyft XL': [0], 'Shared': [0],
                           'lyft_price': [7.0]})
         self.assertEqual(len(lyft_test.columns), 13)
-        
+
     def test_uber_price_output(self):
         '''
         Tests the prediction of uber dynamic pricing inference model
@@ -159,14 +159,13 @@ class TestApp(unittest.TestCase):
 
         message = "NaN values present in distance"
         self.assertIsNotNone(lyft['distance'], message)
-        
+
     def test_conversion(self):
         '''
         Tests the conversion of kilometers to miles
         params, returns: None
         '''
-        distance=1
-        kilometers_to_miles=0.621371
-        miles=0.62
-        message="Conversion to miles incorrect"
+        distance = 1
+        kilometers_to_miles = 0.621371
+        miles = 0.62
         self.assertEqual(round(distance * kilometers_to_miles, 2), miles)

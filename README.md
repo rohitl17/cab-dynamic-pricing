@@ -145,4 +145,4 @@ python -m pip install -r requirements.txt
 
 ## Usage and Output
 
-To see how to use the package to get the dynamic pricing of Uber and Lyft, refer to the [example file](./example/example.md)
+To see how to use the package to get the dynamic pricing of Uber and Lyft, refer to the [example file](./examples/example.md)
