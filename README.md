@@ -123,7 +123,7 @@ conda create -n cabdynamicpricing python=3.9
 conda activate cabdynamicpricing
 ```
 
-If you do not have anaconda, create a virtual environment in the root of the repo
+  If you do not have anaconda, create a virtual environment in the root of the repo
 ```bash
 python -m venv venv
 source venv/bin/activate
